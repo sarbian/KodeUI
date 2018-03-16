@@ -562,6 +562,7 @@ public static class UnityExtensions
         return new Vector2(v.x, y);
     }
 
+#if NEED_SHUFFLE
     /// <summary>
     /// Quick shuffle of a list 
     /// Borrowed from: http://stackoverflow.com/questions/273313/randomize-a-listt-in-c-sharp
@@ -580,6 +581,7 @@ public static class UnityExtensions
             list[n] = value;
         }
     }
+#endif
 
     /// <summary>
     /// Takes a list, creates a copy and returns the newly shuffled list
@@ -706,4 +708,4 @@ public static class UnityExtensions
 
         return obj.transform.parent.gameObject.IsParentedBy(parent);
     }
-}  
+}
