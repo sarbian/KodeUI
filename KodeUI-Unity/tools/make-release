@@ -1,0 +1,9 @@
+#! /bin/sh
+set -e
+modname=$1
+ver=`Source/tools/git-version-gen --prefix v .tarball-version`
+make GAMEDATA=`pwd`/tmp install
+cd tmp
+zip -r9 ../${modname}_v${ver}.zip ${modname}
+cd ..
+rm -rf tmp
