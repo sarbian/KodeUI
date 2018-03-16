@@ -33,6 +33,12 @@ install:
 	mkdir -p ${MODGAMEDATA}
 	cp ${DATA} ${MODGAMEDATA}
 
+release:
+	@for dir in ${SUBDIRS}; do \
+		make -C $$dir $@ || exit 1; \
+	done
+	mv KodeUI-Unity/*.zip .
+
 info:
 	@echo "${MODNAME} Build Information"
 	@echo "    resgen2:  ${RESGEN2}"
@@ -42,6 +48,3 @@ info:
 	@echo "    zip:      ${ZIP}"
 	@echo "    KSP Data: ${KSPDIR}"
 	@echo "    Plugin:   ${PLUGINDIR}"
-
-release:
-	tools/make-release
