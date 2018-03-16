@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright ("2018 not Bill Currie. MIT")]
+[assembly: AssemblyCopyright ("2018 sarbian. MIT")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
