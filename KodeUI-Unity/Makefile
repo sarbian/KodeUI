@@ -15,22 +15,10 @@ ZIP		:= zip
 
 SUBDIRS=Assets GameData
 
-DATA		:= \
-	License.txt					\
-	README.md					\
-	$e
-
-all clean:
+all install clean:
 	@for dir in ${SUBDIRS}; do \
 		make -C $$dir $@ || exit 1; \
 	done
-
-install:
-	@for dir in ${SUBDIRS}; do \
-		make -C $$dir $@ || exit 1; \
-	done
-	mkdir -p ${MODGAMEDATA}
-	cp ${DATA} ${MODGAMEDATA}
 
 info:
 	@echo "${MODNAME} Build Information"
