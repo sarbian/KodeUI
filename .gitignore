@@ -12,6 +12,9 @@ Thumbs.db
 /KodeUI-Unity/[Bb]uilds/
 /KodeUI-Unity/[Uu]nity[Pp]ackage[Mm]anager/
 /KodeUI-Unity/Assets/AssetStoreTools*
+/KodeUI-Unity/Assets/Assembly/*.meta
+/KodeUI-Unity/Assets/Assembly.meta
+/KodeUI-Unity/Assets/Makefile.meta
 
 # Visual Studio 2015 cache directory
 /KodeUI-Unity/.vs/

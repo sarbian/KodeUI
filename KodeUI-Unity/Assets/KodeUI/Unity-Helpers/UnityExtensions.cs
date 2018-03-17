@@ -562,7 +562,7 @@ public static class UnityExtensions
         return new Vector2(v.x, y);
     }
 
-#if NEED_SHUFFLE
+#if (UNITY_EDITOR)
     /// <summary>
     /// Quick shuffle of a list 
     /// Borrowed from: http://stackoverflow.com/questions/273313/randomize-a-listt-in-c-sharp

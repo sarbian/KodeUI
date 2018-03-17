@@ -28,6 +28,8 @@
 
 */
 
+#if (!UNITY_EDITOR)
+
 using System;
 using UnityEngine;
 using System.Reflection;
@@ -91,3 +93,4 @@ namespace AdvancedInput {
 		}
 	}
 }
+#endif
