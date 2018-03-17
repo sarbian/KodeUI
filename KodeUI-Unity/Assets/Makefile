@@ -18,6 +18,8 @@ MOD_FILES := \
 	KodeUI/Unity-Helpers/UnityExtensions.cs	\
 	KodeUI/LayoutPanel.cs	\
 	KodeUI/UIObject.cs	\
+	KodeUI/UIToggle.cs	\
+	KodeUI/UIToggleBase.cs	\
 	SupportScript/UICameraResizer.cs	\
 	SupportScript/UITester.cs	\
 	$e
