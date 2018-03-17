@@ -12,7 +12,7 @@ namespace KodeUI
 
         public override void CreateUI()
         {
-            Horizontal().ChildForceExpand(false, false).ControlChildSize(true, true).PreferredSizeFitter(true,true).Pivot(PivotPresets.TopLeft);;
+            Horizontal().ChildForceExpand(false, false).ControlChildSize(true, true).PreferredSizeFitter(true,true).Pivot(PivotPresets.TopLeft).Finish();;
 
             Image image = gameObject.AddComponent<Image>();
             image.sprite = Resources.Load("DefaultSkin/button_on", typeof(Sprite)) as Sprite;

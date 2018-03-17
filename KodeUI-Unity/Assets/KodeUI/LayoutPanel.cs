@@ -5,30 +5,46 @@ namespace KodeUI
 {
     class LayoutPanel : Layout
     {
+        // TODO split into an empty panel and one with a background
+        private Image backGround;
+
+        public Image BackGround
+        {
+            get { return backGround; }
+        }
+
         public override void CreateUI()
         {
             base.CreateUI();
+
+            Anchor(AnchorPresets.StretchAll).Pivot(PivotPresets.TopLeft);
             
-            // Set RectTransform to stretch
-            rectTransform.anchorMin = Vector2.zero;
-            rectTransform.anchorMax = Vector2.one;
             rectTransform.anchoredPosition = Vector2.zero;
-            rectTransform.sizeDelta = Vector2.zero;
+            
+            backGround = gameObject.AddComponent<Image>();
+            backGround.sprite = Resources.Load("DefaultSkin/window", typeof(Sprite)) as Sprite;
 
-            Image image = gameObject.AddComponent<Image>();
-            image.sprite = Resources.Load("DefaultSkin/window", typeof(Sprite)) as Sprite;
-
-            if (image.sprite == null)
+            if (backGround.sprite == null)
                 Debug.Log("Can not find the Sprite");
 
-            image.type = Image.Type.Sliced;
-            image.color = Color.white;
+            backGround.type = Image.Type.Sliced;
+            backGround.color = Color.white;
         }
 
         public override void Style()
         {
             base.Style();
+
+            if (!LayoutElement)
+                return;
+
             Padding(4);
+        }
+
+        public LayoutPanel Background(Sprite sprite)
+        {
+            backGround.sprite = sprite;
+            return this;
         }
     }
 }

@@ -191,6 +191,24 @@ namespace KodeUI
             return this;
         }
 
+        public UIObject Scale(float s)
+        {
+            rectTransform.localScale = new Vector3(s, s, 1);
+            return this;
+        }
+
+        public UIObject ScaleW(float w)
+        {
+            rectTransform.localScale.SetX(w);
+            return this;
+        }
+
+        public UIObject ScaleH(float h)
+        {
+            rectTransform.localScale.SetY(h);
+            return this;
+        }
+
         public UIObject PreferredSizeFitter(bool v, bool h)
         {
             if (!ContentSizeFitter)
