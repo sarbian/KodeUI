@@ -41,6 +41,7 @@ public class UITester : MonoBehaviour
             .Finish()
             .Add<UIText>().Text("A long text that should overflow to the next line").Alignment(TextAlignmentOptions.TopLeft).FlexibleLayout(true,false).Finish()
             .Add<UIText>(out text).Text("N/A").Alignment(TextAlignmentOptions.TopRight).FlexibleLayout(true,false).Finish()
+            .Add<UIToggle>().OnClick(Action).FlexibleLayout(false,false).Width(40).Height(40).Finish()
         .Finish();
 
         
@@ -55,6 +56,8 @@ public class UITester : MonoBehaviour
 
     private void Update()
     {
+        if (!text)
+            return;
         text.Text("Stuff");
     }
 
@@ -68,4 +71,10 @@ public class UITester : MonoBehaviour
     {
         Debug.Log("YAY");
     }
+
+    private void Action(bool arg0)
+    {
+        Debug.Log("Now " + arg0);
+    }
+
 }
