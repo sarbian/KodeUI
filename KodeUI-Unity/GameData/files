@@ -1,3 +1,11 @@
-KodeUI/UI/button_on.png
-KodeUI/UI/window.png
+KodeUI/UI/DefaultSkin.cfg
+KodeUI/UI/button.cfg
 KodeUI/UI/button.png
+KodeUI/UI/button_on.cfg
+KodeUI/UI/button_on.png
+KodeUI/UI/toggle.cfg
+KodeUI/UI/toggle.png
+KodeUI/UI/toggle_on.cfg
+KodeUI/UI/toggle_on.png
+KodeUI/UI/window.cfg
+KodeUI/UI/window.png

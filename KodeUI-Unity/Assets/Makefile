@@ -20,6 +20,9 @@ MOD_FILES := \
 	KodeUI/UIObject.cs	\
 	KodeUI/UIToggle.cs	\
 	KodeUI/UIToggleBase.cs	\
+	KodeUI/Loader.cs \
+	KodeUI/SpriteLoader.cs	\
+	KodeUI/Utils.cs	\
 	SupportScript/UICameraResizer.cs	\
 	SupportScript/UITester.cs	\
 	$e
