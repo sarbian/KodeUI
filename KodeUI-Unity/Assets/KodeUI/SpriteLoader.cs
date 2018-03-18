@@ -13,7 +13,7 @@ namespace KodeUI
 		{
 			Sprite s = null;
 			sprites.TryGetValue (name, out s);
-			return s;
+			return Sprite.Instantiate(s);
 		}
 
 		public static IEnumerator LoadSprites()
