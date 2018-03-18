@@ -31,6 +31,7 @@ namespace KodeUI {
 			IEnumerator Load ()
 			{
 				yield return StartCoroutine (SpriteLoader.LoadSprites ());
+				yield return StartCoroutine (ImageLoader.LoadImages ());
 				done = true;
 			}
 

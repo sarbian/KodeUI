@@ -21,6 +21,7 @@ MOD_FILES := \
 	KodeUI/UIToggle.cs	\
 	KodeUI/UIToggleBase.cs	\
 	KodeUI/Loader.cs \
+	KodeUI/ImageLoader.cs	\
 	KodeUI/SpriteLoader.cs	\
 	KodeUI/Utils.cs	\
 	SupportScript/UICameraResizer.cs	\
