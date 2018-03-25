@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-//using UnityEngine;
+using UnityEngine;
 
 namespace KodeUI
 {
@@ -118,7 +118,7 @@ namespace KodeUI
 			}
 			return nodelist.ToArray ();
 		}
-/*
+
 		static readonly char []comma = {','};
 		static string []ParseArray (string text)
 		{
@@ -216,7 +216,7 @@ namespace KodeUI
 			}
 			return false;
 		}
-*/
+
 		static void cfg_error (Script script, string msg)
 		{
 			msg = String.Format ("{0}:{1}:{2}", script.Filename, script.Line,
