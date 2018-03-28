@@ -37,8 +37,8 @@ namespace KodeUI
                 {
                     string text = File.ReadAllText (cfg);
                     ConfigNode node = ConfigNode.Parse(text);
-                    configNodes.Add(node);
-                    Debug.Log("Loaded " + cfg);
+                    configNodes.AddRange(node.nodes);
+                    Debug.Log("Loaded " +  node.nodes.Count + " nodes from " + Path.GetFileName(cfg));
                 }
             }
             ready = true;
