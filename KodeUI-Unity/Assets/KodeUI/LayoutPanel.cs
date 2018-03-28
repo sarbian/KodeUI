@@ -5,7 +5,6 @@ namespace KodeUI
 {
     class LayoutPanel : Layout
     {
-        // TODO split into an empty panel and one with a background
         private Image backGround;
 
         public Image BackGround
@@ -22,29 +21,27 @@ namespace KodeUI
             rectTransform.anchoredPosition = Vector2.zero;
             
             backGround = gameObject.AddComponent<Image>();
-            backGround.sprite = Resources.Load("DefaultSkin/window", typeof(Sprite)) as Sprite;
-
-            if (backGround.sprite == null)
-                Debug.Log("Can not find the Sprite");
-
-            backGround.type = Image.Type.Sliced;
-            backGround.color = Color.white;
+            backGround.color = Color.clear;;
         }
 
         public override void Style()
         {
             base.Style();
-
-            if (!LayoutElement)
-                return;
-
-            Padding(4);
+            
         }
 
-        public LayoutPanel Background(Sprite sprite)
+        public LayoutPanel Background(Sprite sprite, Image.Type type =  Image.Type.Simple)
         {
             backGround.sprite = sprite;
+            backGround.type = type;
             return this;
         }
+        public LayoutPanel BackgroundColor(Color color)
+        {
+            backGround.color = color;
+            return this;
+        }
+
+
     }
 }

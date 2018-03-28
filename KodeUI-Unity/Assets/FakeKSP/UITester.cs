@@ -25,11 +25,11 @@ public class UITester : MonoBehaviour
         if (testUI)
             return;
 
-        LayoutPanel basePanel = UIKit.CreateUI<LayoutPanel>(appCanvas.transform as RectTransform, "testUI");
+        LayoutPanel basePanel = UIKit.CreateUI<Window>(appCanvas.transform as RectTransform, "testUI");
         testUI = basePanel.gameObject;
 
         basePanel.Vertical().ControlChildSize(true, true).ChildForceExpand(false,false).PreferredSizeFitter(true, true).Anchor(AnchorPresets.MiddleCenter).Pivot(PivotPresets.TopLeft).PreferredWidth(150).Finish()
-            .Add<UIText>().Text("A test").Alignment(TextAlignmentOptions.Top).FlexibleLayout(true,false).Pivot(PivotPresets.TopCenter).Finish()
+            .Add<UIText>().Text("A test").Alignment(TextAlignmentOptions.Top).FlexibleLayout(true,false).Pivot(PivotPresets.TopCenter).BlocksRaycasts(false).Finish()
             .Add<UIButton>().Text("Button A").OnClick(ButtonAction).FlexibleLayout(true,false).Finish()
             .Add<Layout>().Horizontal().ControlChildSize(false, false).ChildForceExpand(false,false).Anchor(AnchorPresets.HorStretchTop).FlexibleLayout(true,false)
                 .Add<UIButton>().Text("B").OnClick(ButtonAction).Finish()

@@ -48,6 +48,16 @@ namespace KodeUI
             return this;
         }
 
+        public Layout Padding(int left, int right, int top, int bottom)
+        {
+            if (lg == null)
+            {
+                Debug.LogError("Call Vertical() or Horizontal() before Padding()");
+            }
+            lg.padding = new RectOffset(left, right, top, bottom);
+            return this;
+        }
+
         public Layout ChildForceExpand(bool width, bool height)
         {
             if (lg == null)
@@ -120,6 +130,5 @@ namespace KodeUI
             lg.childAlignment = anchor;
             return this;
         }
-
     }
 }

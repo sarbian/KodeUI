@@ -241,5 +241,11 @@ namespace KodeUI
             LayoutElement.preferredHeight = h;
             return this;
         }
+        
+        public UIObject BlocksRaycasts(bool state)
+        {
+            CanvasGroup.blocksRaycasts = state;
+            return this;
+        }
     }
 }
