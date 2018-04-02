@@ -77,7 +77,7 @@ namespace KodeUI
 
 			while (pos < text.Length) {
 				while (pos < text.Length && Char.IsWhiteSpace (text[pos])) {
-					if (text[pos] == '\n') {
+					if (text[pos] == Environment.NewLine[0]) {
 						if (!crossline) {
 							return false;
 						}
@@ -94,7 +94,7 @@ namespace KodeUI
 					continue;
 				}
 				if (isComment ()) {
-					while (pos < text.Length && text[pos] != '\n') {
+					while (pos < text.Length && text[pos] != Environment.NewLine[0]) {
 						pos += 1;
 					}
 					if (pos == text.Length) {
@@ -118,7 +118,7 @@ namespace KodeUI
 			start = pos;
 			end = start;
 			while (pos < text.Length) {
-				if (text[pos] == '\n') {
+				if (text[pos] == Environment.NewLine[0]) {
 					line += 1;
 					pos += 1;
 					break;
@@ -155,7 +155,7 @@ namespace KodeUI
 					error ("EOF inside quoted string");
 				}
 				while (text[pos] != '\"') {
-					if (text[pos] == '\n') {
+					if (text[pos] == Environment.NewLine[0]) {
 						line += 1;
 					}
 					pos += 1;
