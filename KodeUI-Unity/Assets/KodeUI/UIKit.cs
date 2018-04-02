@@ -17,7 +17,5 @@ namespace KodeUI
             child.CreateUI();
             return child;
         }
-        
-
     }
 }

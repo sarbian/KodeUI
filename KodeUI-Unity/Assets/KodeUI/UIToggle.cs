@@ -17,15 +17,20 @@ namespace KodeUI
             if (image.sprite == null || spriteOn == null)
                 Debug.Log("Can not find the Sprite");
 
+            toggle.targetGraphic = image;
+
             ColorBlock colors = toggle.colors;
-            colors.highlightedColor = new Color(0.882f, 0f, 0.882f);
+            colors.highlightedColor = Color.magenta;
             colors.pressedColor     = new Color(0.0f, 0.8f, 0.1f);
-            colors.disabledColor    = new Color(0f, 0f, 0f);
+            colors.disabledColor    = Color.clear;
             colors.normalColor      = Color.white;
             toggle.colors = colors;
 
             LayoutPanel checkMark;
-            Add<LayoutPanel>(out checkMark).Background(spriteOn).Anchor(AnchorPresets.StretchAll).Pivot(PivotPresets.MiddleCenter).Scale(0.625f).Finish();
+            Add<LayoutPanel>(out checkMark, "CheckMark").Background(spriteOn, Image.Type.Sliced).BackgroundColor(Color.white).Anchor(AnchorPresets.StretchAll).Pivot(PivotPresets.MiddleCenter).Scale(0.625f).Finish();
+
+            // TODO This should be handled in a parent class with some logic related to Stretch axis. In Finish ? Might need something similar with anchoredPosition
+            checkMark.rectTransform.sizeDelta = Vector2.zero;
 
             toggle.graphic = checkMark.BackGround;
         }

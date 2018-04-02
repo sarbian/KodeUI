@@ -33,7 +33,7 @@ namespace KodeUI
             colors.normalColor      = Color.white;
             button.colors = colors;
             
-            Add<UIText>(out childText).Text("Button").Alignment(TextAlignmentOptions.Center).Anchor(AnchorPresets.StretchAll).Width(0).Height(0).PreferredSizeFitter(true, true).Finish();
+            Add<UIText>(out childText, "ButtonText").Text("Button").Alignment(TextAlignmentOptions.Center).Anchor(AnchorPresets.StretchAll).Width(0).Height(0).PreferredSizeFitter(true, true).Finish();
         }
 
         public override void Style()

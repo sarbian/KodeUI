@@ -55,5 +55,11 @@ namespace KodeUI
             return this;
         }
 
+        public UIText Overflow(TextOverflowModes mode)
+        {
+            tmpText.overflowMode = mode;
+            return this;
+        }
+
     }
 }

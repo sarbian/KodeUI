@@ -179,6 +179,8 @@ namespace KodeUI
             return this;
         }
 
+        // TODO Width & Height are wrong for axis set to stretch.
+        // See https://stackoverflow.com/a/44474228 to decrypt sizeDelta
         public UIObject Width(float w)
         {
             rectTransform.sizeDelta = rectTransform.sizeDelta.SetX(w);

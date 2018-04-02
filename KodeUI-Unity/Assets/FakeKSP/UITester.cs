@@ -40,7 +40,11 @@ public class UITester : MonoBehaviour
                 .Add<UIButton>().Text("Is Long").OnClick(ButtonAction).FlexibleLayout(true,false).Finish()
             .Finish()
             .Add<UIText>().Text("A long text that should overflow to the next line").Alignment(TextAlignmentOptions.TopLeft).FlexibleLayout(true,false).Finish()
-            .Add<UIText>(out text).Text("N/A").Alignment(TextAlignmentOptions.TopRight).FlexibleLayout(true,false).Finish()
+            
+            .Add<Layout>().Horizontal().ControlChildSize(false, false).ChildForceExpand(false,false).Anchor(AnchorPresets.HorStretchTop)
+                .Add<UIText>(out text).Text("N/A").Alignment(TextAlignmentOptions.TopLeft).PreferredSizeFitter(true,true).Finish()
+            .Finish()
+            
             .Add<UIToggle>().OnClick(Action).FlexibleLayout(false,false).Width(40).Height(40).Finish()
         .Finish();
 
@@ -58,7 +62,10 @@ public class UITester : MonoBehaviour
     {
         if (!text)
             return;
-        text.Text("Stuff");
+
+        //float f = Mathf.Exp( Mathf.Sin(Time.fixedTime) * 10f) * 1000f;
+        float f = Mathf.Exp( 10f) * 1000f;
+        text.Text(f.ToString("F12"));
     }
 
     public void DestroyUI()
