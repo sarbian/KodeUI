@@ -59,10 +59,17 @@ namespace KodeUI
 
         public Texture2D GetTexture(string filename, bool isNormalMap)
         {
-            var filePath = resourcePath + filename  + ".png";
+            var filePath = GameDataPath + filename  + ".png";
+            
+            Texture2D tex = new Texture2D(2, 2);
+
+            if (!File.Exists(filePath))
+            {
+                Debug.LogWarning("Missing texture file " + filePath);
+                return tex;
+            }
 
             var fileData = File.ReadAllBytes(filePath);
-            Texture2D tex = new Texture2D(2, 2);
             tex.LoadImage(fileData);
             return tex;
         }

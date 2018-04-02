@@ -18,6 +18,10 @@ namespace KodeUI
         private void Start()
         {
             Debug.Log("Start LoadingScreen");
+
+            loaders.Add(new GameObject("KodeUI_Loader").AddComponent<KodeUI_Loader.Loader>());
+            loaders.Add(UITester.Instance);
+
             StartCoroutine(Load());
         }
 

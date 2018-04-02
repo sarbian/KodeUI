@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UITester : MonoBehaviour
+public class UITester : LoadingSystem
 {
     public static UITester Instance { get; private set; }
 
@@ -18,6 +18,18 @@ public class UITester : MonoBehaviour
     }
 
     UIText text;
+    private bool ready = false;
+
+    public override bool IsReady()
+    {
+        return Instance.ready;
+    }
+
+    public override void StartLoad()
+    {
+        Instance.BuildUI();
+        ready = true;
+    }
 
     // Reminder since I keep forgetting: The UI must be built while in play mode for the buttons to work
     public void BuildUI()

@@ -9,7 +9,7 @@ namespace KodeUI {
 	public class KodeUI_Loader: MonoBehaviour
 	{
 
-		class Loader: LoadingSystem
+		public class Loader: LoadingSystem
 		{
 			public bool done;
 
