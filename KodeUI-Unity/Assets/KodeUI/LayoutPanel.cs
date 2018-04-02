@@ -36,6 +36,13 @@ namespace KodeUI
             backGround.type = type;
             return this;
         }
+
+        public LayoutPanel Background(string image)
+        {
+            ImageLoader.SetupImage(backGround,image);
+            return this;
+        }
+
         public LayoutPanel BackgroundColor(Color color)
         {
             backGround.color = color;

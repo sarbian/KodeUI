@@ -9,18 +9,16 @@ namespace KodeUI
     {
         private UIText childText;
         private Button button;
+        private Image image;
 
         public override void CreateUI()
         {
-            Horizontal().ChildForceExpand(false, false).ControlChildSize(true, true).PreferredSizeFitter(true,true).Pivot(PivotPresets.TopLeft).Finish();;
+            Horizontal().ChildForceExpand(false, false).ControlChildSize(true, true).PreferredSizeFitter(true,true).Pivot(PivotPresets.TopLeft);
 
-            Image image = gameObject.AddComponent<Image>();
-            image.sprite = Resources.Load("DefaultSkin/button_on", typeof(Sprite)) as Sprite;
+            // TODO UIButton (and UIToggle) seems to share the base of a UIPanel ? Use that as parent ?
 
-            if (image.sprite == null)
-                Debug.Log("Can not find the Sprite");
-
-            image.type = Image.Type.Sliced;
+            image = gameObject.AddComponent<Image>();
+            
             image.color = Color.white;
 
             button = gameObject.AddComponent<Button>();
@@ -38,6 +36,7 @@ namespace KodeUI
 
         public override void Style()
         {
+            ImageLoader.SetupImage(image,"KodeUI/Default/button_on");
             Padding(3);
         }
         

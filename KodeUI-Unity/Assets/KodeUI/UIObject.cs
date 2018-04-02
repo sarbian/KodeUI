@@ -236,10 +236,20 @@ namespace KodeUI
             LayoutElement.preferredWidth = w;
             return this;
         }
+
         public UIObject PreferredHeight(float h)
         {
             if (!LayoutElement)
                 gameObject.AddComponent<LayoutElement>();
+            LayoutElement.preferredHeight = h;
+            return this;
+        }
+
+        public UIObject PreferredSize(float w, float h)
+        {
+            if (!LayoutElement)
+                gameObject.AddComponent<LayoutElement>();
+            LayoutElement.preferredWidth = w;
             LayoutElement.preferredHeight = h;
             return this;
         }

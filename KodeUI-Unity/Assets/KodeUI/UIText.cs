@@ -22,12 +22,14 @@ namespace KodeUI
         public UIText Text(string text)
         {
             tmpText.text = text;
+            tmpText.SetLayoutDirty();
             return this;
         }
 
         public UIText Text(char[] text)
         {
             tmpText.SetCharArray(text);
+            tmpText.SetLayoutDirty();
             return this;
         }
         

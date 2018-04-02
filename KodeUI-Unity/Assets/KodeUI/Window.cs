@@ -16,16 +16,14 @@ namespace KodeUI
             // Should be handled in UIObject with more Properties ? It would make moving to a new canvas easier ?
             Canvas canvas = GetComponentInParent<Canvas>();
             canvasRectTransform = canvas.GetComponent<RectTransform>();
-
-            Sprite skin = Resources.Load("DefaultSkin/window", typeof(Sprite)) as Sprite;
             
-            Background(skin, Image.Type.Sliced);
             BackgroundColor(Color.white);
         }
 
         public override void Style()
         {
             base.Style();
+            ImageLoader.SetupImage(BackGround,"KodeUI/Default/window");
             Padding(4, 4, 0, 4);
         }
 

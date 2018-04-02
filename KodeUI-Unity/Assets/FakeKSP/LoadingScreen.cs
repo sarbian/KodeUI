@@ -29,12 +29,12 @@ namespace KodeUI
         {
             foreach (LoadingSystem loader in loaders)
             {
+                Debug.Log("Starting Loader " + loader.GetType().Name);
                 loader.StartLoad();
 
                 while (!loader.IsReady())
                 {
                     yield return null;
-                    Debug.Log("Loaded  " + loader.GetType().Name);
                 }
             }
         }
