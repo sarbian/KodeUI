@@ -33,6 +33,7 @@ Thumbs.db
 *.booproj
 *.svd
 *.pdb
+*.swp
 
 # Unity3D generated meta files
 *.pidb.meta
