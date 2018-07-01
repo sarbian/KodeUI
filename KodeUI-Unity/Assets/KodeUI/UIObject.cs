@@ -167,6 +167,13 @@ namespace KodeUI
             return this;
         }
 
+		public UIObject Offset(Vector2 min, Vector2 max)
+		{
+			rectTransform.offsetMin = min;
+			rectTransform.offsetMax = max;
+			return this;
+		}
+
         public UIObject Pivot(PivotPresets pivot)
         {
             rectTransform.SetPivot(pivot);
