@@ -5,7 +5,7 @@ namespace KodeUI
 {
     class UIText : Layout
     {
-        private TextMeshProUGUI tmpText;
+        public TextMeshProUGUI tmpText { get; private set; }
 
         public override void CreateUI()
         {
