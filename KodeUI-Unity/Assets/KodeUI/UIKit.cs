@@ -7,9 +7,9 @@ namespace KodeUI
     {
         public static T CreateUI<T>(RectTransform rectTransform, string id) where T : UIObject
         {
-            var childObj = new GameObject(id);
+            var childObj = new GameObject(id, typeof(RectTransform));
             childObj.transform.SetParent(rectTransform, true);
-            RectTransform rect = childObj.AddComponent<RectTransform>();
+            RectTransform rect = childObj.GetComponent<RectTransform>();
             T child = childObj.AddComponent<T>();
 
             rect.anchoredPosition3D = Vector3.zero;
