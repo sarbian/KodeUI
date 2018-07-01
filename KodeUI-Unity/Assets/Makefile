@@ -17,15 +17,15 @@ MOD_FILES := \
 	KodeUI/Unity-Helpers/UnityUtils.cs	\
 	KodeUI/Unity-Helpers/UnityExtensions.cs	\
 	KodeUI/LayoutPanel.cs	\
+	KodeUI/UIInputField.cs	\
 	KodeUI/UIObject.cs	\
+	KodeUI/UIRectMask.cs	\
 	KodeUI/UIToggle.cs	\
 	KodeUI/UIToggleBase.cs	\
 	KodeUI/Loader.cs \
 	KodeUI/ImageLoader.cs	\
 	KodeUI/SpriteLoader.cs	\
 	KodeUI/Utils.cs	\
-	SupportScript/UICameraResizer.cs	\
-	SupportScript/UITester.cs	\
 	$e
 
 RESGEN2		:= resgen2
