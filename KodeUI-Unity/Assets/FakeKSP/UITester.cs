@@ -40,21 +40,25 @@ public class UITester : LoadingSystem
         LayoutPanel basePanel = UIKit.CreateUI<Window>(appCanvas.transform as RectTransform, "testUI");
         testUI = basePanel.gameObject;
 
-        basePanel.Vertical().ControlChildSize(true, true).ChildForceExpand(false,false).PreferredSizeFitter(true, true).Anchor(AnchorPresets.MiddleCenter).Pivot(PivotPresets.TopLeft).PreferredWidth(150).Finish()
+        basePanel.Vertical().ControlChildSize(true, true).ChildForceExpand(false,false).PreferredSizeFitter(true, true).Anchor(AnchorPresets.MiddleCenter).Pivot(PivotPresets.TopLeft).PreferredWidth(300).Finish()
             .Add<UIText>().Text("A test").Alignment(TextAlignmentOptions.Top).FlexibleLayout(true,false).Pivot(PivotPresets.TopCenter).BlocksRaycasts(false).Finish()
             .Add<UIButton>().Text("Button A").OnClick(ButtonAction).FlexibleLayout(true,false).Finish()
-            .Add<Layout>().Horizontal().ControlChildSize(false, false).ChildForceExpand(false,false).Anchor(AnchorPresets.HorStretchTop).FlexibleLayout(true,false)
+            .Add<Layout>().Horizontal().ControlChildSize(true, true).ChildForceExpand(false,false).Anchor(AnchorPresets.HorStretchTop).FlexibleLayout(true,false)
+				.Add<UIEmpty>().FlexibleLayout(true, true).Finish()
                 .Add<UIButton>().Text("B").OnClick(ButtonAction).Finish()
+				.Add<UIEmpty>().FlexibleLayout(true, true).Finish()
                 .Add<UIButton>().Text("C").OnClick(ButtonAction).Finish()
+				.Add<UIEmpty>().FlexibleLayout(true, true).Finish()
             .Finish()
-            .Add<Layout>().Horizontal().ControlChildSize(false, false).ChildForceExpand(false,false).Anchor(AnchorPresets.HorStretchTop).FlexibleLayout(true,false)
+            .Add<Layout>().Horizontal().ControlChildSize(true, true).ChildForceExpand(false,false).Anchor(AnchorPresets.HorStretchTop).FlexibleLayout(true,false)
                 .Add<UIButton>().Text("Very Long text").OnClick(ButtonAction).FlexibleLayout(true,false).Finish()
+				.Add<UIEmpty>().FlexibleLayout(true, true).Finish()
                 .Add<UIButton>().Text("Is Long").OnClick(ButtonAction).FlexibleLayout(true,false).Finish()
             .Finish()
             .Add<UIText>().Text("A long text that should overflow to the next line").Alignment(TextAlignmentOptions.TopLeft).FlexibleLayout(true,false).Finish()
             
-            .Add<Layout>().Horizontal().ControlChildSize(false, false).ChildForceExpand(false,false).Anchor(AnchorPresets.HorStretchTop)
-                .Add<UIText>(out text).Text("N/A").Alignment(TextAlignmentOptions.TopLeft).PreferredSizeFitter(true,true).Finish()
+            .Add<Layout>().Horizontal().ControlChildSize(true, true).ChildForceExpand(false,false).Anchor(AnchorPresets.HorStretchTop)
+                .Add<UIText>(out text).Text("N/A").Alignment(TextAlignmentOptions.TopLeft).FlexibleLayout(true,false).Finish()
             .Finish()
             
             .Add<UIToggle>().OnClick(Action).FlexibleLayout(false,true).PreferredSize(15,15).Finish()

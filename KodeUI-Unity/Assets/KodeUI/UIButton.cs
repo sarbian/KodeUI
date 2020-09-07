@@ -13,7 +13,7 @@ namespace KodeUI
 
         public override void CreateUI()
         {
-            Horizontal().ChildForceExpand(false, false).ControlChildSize(true, true).PreferredSizeFitter(true,true).Pivot(PivotPresets.TopLeft);
+            Horizontal().ChildForceExpand(false, false).ControlChildSize(true, true).Pivot(PivotPresets.TopLeft);
 
             // TODO UIButton (and UIToggle) seems to share the base of a UIPanel ? Use that as parent ?
 
@@ -31,7 +31,7 @@ namespace KodeUI
             colors.normalColor      = Color.white;
             button.colors = colors;
             
-            Add<UIText>(out childText, "ButtonText").Text("Button").Alignment(TextAlignmentOptions.Center).Anchor(AnchorPresets.StretchAll).Width(0).Height(0).PreferredSizeFitter(true, true).Finish();
+            Add<UIText>(out childText, "ButtonText").Text("Button").Alignment(TextAlignmentOptions.Center).Anchor(AnchorPresets.StretchAll).Width(0).Height(0).Finish();
         }
 
         public override void Style()
