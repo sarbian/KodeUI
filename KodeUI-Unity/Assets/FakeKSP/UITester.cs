@@ -49,6 +49,7 @@ public class UITester : LoadingSystem
 				.Add<UIEmpty>().FlexibleLayout(true, true).Finish()
                 .Add<UIButton>().Text("C").OnClick(ButtonAction).Finish()
 				.Add<UIEmpty>().FlexibleLayout(true, true).Finish()
+                .Add<UIButton>().Image(SpriteLoader.GetSprite("KodeUI/Default/toggle_on")).OnClick(ButtonAction).Finish()
             .Finish()
             .Add<Layout>().Horizontal().ControlChildSize(true, true).ChildForceExpand(false,false).Anchor(AnchorPresets.HorStretchTop).FlexibleLayout(true,false)
                 .Add<UIButton>().Text("Very Long text").OnClick(ButtonAction).FlexibleLayout(true,false).Finish()

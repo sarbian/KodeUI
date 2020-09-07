@@ -8,6 +8,7 @@ namespace KodeUI
     class UIButton : Layout
     {
         private UIText childText;
+        private UIImage childImage;
         private Button button;
         private Image image;
 
@@ -31,7 +32,6 @@ namespace KodeUI
             colors.normalColor      = Color.white;
             button.colors = colors;
             
-            Add<UIText>(out childText, "ButtonText").Text("Button").Alignment(TextAlignmentOptions.Center).Anchor(AnchorPresets.StretchAll).Width(0).Height(0).Finish();
         }
 
         public override void Style()
@@ -42,9 +42,23 @@ namespace KodeUI
         
         public UIButton Text(string text)
         {
-            childText.Text(text);
+			if (childText == null) {
+				Add<UIText>(out childText, "ButtonText").Text(text).Alignment(TextAlignmentOptions.Center).Anchor(AnchorPresets.StretchAll).Width(0).Height(0).Finish();
+			} else {
+				childText.Text(text);
+			}
             return this;
         }
+
+		public UIButton Image(Sprite sprite)
+		{
+			if (childImage == null) {
+				Add<UIImage>(out childImage, "ButtomImage").Image(sprite).Anchor(AnchorPresets.StretchAll).Width(0).Height(0).Finish();
+			} else {
+				childImage.Image(sprite);
+			}
+            return this;
+		}
 
         public UIButton OnClick(UnityAction action)
         {
