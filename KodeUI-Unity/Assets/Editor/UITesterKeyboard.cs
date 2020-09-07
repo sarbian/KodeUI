@@ -8,7 +8,7 @@ namespace Assets.SupportScript
     {
         static UITesterKeyboard()
         {
-            SceneView.onSceneGUIDelegate += view =>
+            SceneView.duringSceneGui += view =>
             {
                 var e = Event.current;
                 if (e == null || !e.isKey)
