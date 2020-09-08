@@ -130,6 +130,20 @@ namespace KodeUI
             UIObject parent = rectTransform.parent.GetComponent<UIObject>();
             return parent != null ? parent : this;
         }
+
+        public Vector2 GetParentSize ()
+        {
+            var parent = rectTransform.parent as RectTransform;
+            if (parent != null) {
+                return parent.rect.size;
+            }
+            return Vector2.zero;
+        }
+
+        public float CalcSizeDelta(float size, int axis)
+        {
+            return size - GetParentSize()[axis] * rectTransform.anchorMax[axis] - rectTransform.anchorMin[axis];
+        }
         
         public UIObject X(float x)
         {
@@ -167,12 +181,12 @@ namespace KodeUI
             return this;
         }
 
-		public UIObject Offset(Vector2 min, Vector2 max)
-		{
-			rectTransform.offsetMin = min;
-			rectTransform.offsetMax = max;
-			return this;
-		}
+        public UIObject Offset(Vector2 min, Vector2 max)
+        {
+            rectTransform.offsetMin = min;
+            rectTransform.offsetMax = max;
+            return this;
+        }
 
         public UIObject Pivot(PivotPresets pivot)
         {
@@ -186,17 +200,15 @@ namespace KodeUI
             return this;
         }
 
-        // TODO Width & Height are wrong for axis set to stretch.
-        // See https://stackoverflow.com/a/44474228 to decrypt sizeDelta
         public UIObject Width(float w)
         {
-            rectTransform.sizeDelta = rectTransform.sizeDelta.SetX(w);
+            rectTransform.sizeDelta = rectTransform.sizeDelta.SetX(CalcSizeDelta(w, 0));
             return this;
         }
 
         public UIObject Height(float h)
         {
-            rectTransform.sizeDelta = rectTransform.sizeDelta.SetY(h);
+            rectTransform.sizeDelta = rectTransform.sizeDelta.SetY(CalcSizeDelta(h, 1));
             return this;
         }
 
