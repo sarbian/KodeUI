@@ -200,6 +200,12 @@ namespace KodeUI
             return this;
         }
 
+        public UIObject SizeDelta(float w, float h)
+        {
+            rectTransform.sizeDelta = new Vector2(w, h);
+            return this;
+        }
+
         public UIObject WidthDelta(float w)
         {
             rectTransform.sizeDelta = rectTransform.sizeDelta.SetX(w);
@@ -253,10 +259,15 @@ namespace KodeUI
 
         public UIObject FlexibleLayout(bool w, bool h)
         {
+            return FlexibleLayout (w ? 1 : -1, h ? 1 : -1);
+        }
+
+        public UIObject FlexibleLayout(float w, float h)
+        {
             if (!LayoutElement)
                 gameObject.AddComponent<LayoutElement>();
-            LayoutElement.flexibleHeight = h ? 1 : -1;
-            LayoutElement.flexibleWidth = w ? 1 : -1;
+            LayoutElement.flexibleHeight = h;
+            LayoutElement.flexibleWidth = w;
             return this;
         }
 
