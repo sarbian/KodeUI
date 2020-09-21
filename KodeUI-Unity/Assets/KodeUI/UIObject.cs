@@ -48,6 +48,17 @@ namespace KodeUI
                 return _contentSizeFitter;
             }
         }
+
+        private AspectRatioFitter _aspectRatioFitter;
+        public AspectRatioFitter AspectRatioFitter
+        {
+            get
+            {
+                if (_aspectRatioFitter == null)
+                    _aspectRatioFitter = GetComponent<AspectRatioFitter>();
+                return _aspectRatioFitter;
+            }
+        }
         
         private LayoutPosition _layoutPosition = LayoutPosition.NotSet;
         private LayoutPosition layoutPosition
@@ -254,6 +265,15 @@ namespace KodeUI
                 gameObject.AddComponent<ContentSizeFitter>();
             ContentSizeFitter.horizontalFit = h ? ContentSizeFitter.FitMode.PreferredSize : ContentSizeFitter.FitMode.Unconstrained;
             ContentSizeFitter.verticalFit = v ? ContentSizeFitter.FitMode.PreferredSize : ContentSizeFitter.FitMode.Unconstrained;
+            return this;
+        }
+
+        public UIObject AspectRatioSizeFitter(AspectRatioFitter.AspectMode mode, float ratio)
+        {
+            if (!AspectRatioFitter)
+                gameObject.AddComponent<AspectRatioFitter>();
+            AspectRatioFitter.aspectMode = mode;
+            AspectRatioFitter.aspectRatio = ratio;
             return this;
         }
 
