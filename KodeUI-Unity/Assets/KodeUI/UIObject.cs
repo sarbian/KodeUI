@@ -200,6 +200,18 @@ namespace KodeUI
             return this;
         }
 
+        public UIObject WidthDelta(float w)
+        {
+            rectTransform.sizeDelta = rectTransform.sizeDelta.SetX(w);
+            return this;
+        }
+
+        public UIObject HeightDelta(float h)
+        {
+            rectTransform.sizeDelta = rectTransform.sizeDelta.SetY(h);
+            return this;
+        }
+
         public UIObject Width(float w)
         {
             rectTransform.sizeDelta = rectTransform.sizeDelta.SetX(CalcSizeDelta(w, 0));
