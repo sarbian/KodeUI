@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace KodeUI
 {
-	class UIScrollbar : UIObject
+	public class UIScrollbar : UIObject
 	{
 		Image image;
 		RectTransform slidingArea;

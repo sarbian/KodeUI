@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace KodeUI
 {
-    abstract class UILayoutElement : UIObject, ILayoutElement, ILayoutIgnorer
+    public abstract class UILayoutElement : UIObject, ILayoutElement, ILayoutIgnorer
     {
 		public virtual void CalculateLayoutInputHorizontal() { }
 		public virtual void CalculateLayoutInputVertical() { }

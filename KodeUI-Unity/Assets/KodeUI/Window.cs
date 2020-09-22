@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace KodeUI
 {
-    class Window : LayoutPanel, IBeginDragHandler, IDragHandler, IEndDragHandler
+    public class Window : LayoutPanel, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         private bool isDragging = false;
         private RectTransform canvasRectTransform;

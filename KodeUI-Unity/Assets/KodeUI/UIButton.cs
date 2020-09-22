@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace KodeUI
 {
-    class UIButton : Layout
+    public class UIButton : Layout
     {
         private UIText childText;
         private UIImage childImage;

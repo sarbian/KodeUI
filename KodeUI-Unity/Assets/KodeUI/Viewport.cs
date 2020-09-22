@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace KodeUI
 {
-	class Viewport : UIObject
+	public class Viewport : UIObject
 	{
 		Image image;
 		Mask mask;

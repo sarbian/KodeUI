@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace KodeUI
 {
-    class UIEmpty : Layout
+    public class UIEmpty : Layout
     {
         public override void CreateUI()
         {

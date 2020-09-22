@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace KodeUI
 {
-    class UIRectMask : Layout
+    public class UIRectMask : Layout
     {
         public RectMask2D mask { get; private set; }
 

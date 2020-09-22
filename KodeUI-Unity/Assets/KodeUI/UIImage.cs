@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace KodeUI
 {
-    class UIImage : UIObject
+    public class UIImage : UIObject
     {
         public Image image { get; private set; }
 

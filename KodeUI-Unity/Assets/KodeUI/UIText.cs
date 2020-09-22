@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace KodeUI
 {
-    class UIText : Layout
+    public class UIText : Layout
     {
         public TextMeshProUGUI tmpText { get; private set; }
 

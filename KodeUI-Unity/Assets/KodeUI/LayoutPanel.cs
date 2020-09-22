@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace KodeUI
 {
-    class LayoutPanel : Layout
+    public class LayoutPanel : Layout
     {
         private Image backGround;
 

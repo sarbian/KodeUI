@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace KodeUI
 {
-	class ScrollView : Layout
+	public class ScrollView : Layout
 	{
 		private Image backGround;
 		private ScrollRect scrollRect;

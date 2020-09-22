@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace KodeUI
 {
-	class UIInputField : Layout
+	public class UIInputField : Layout
 	{
 		private TMP_InputField inputField;
 		UIRectMask textArea;

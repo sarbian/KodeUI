@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace KodeUI
 {
-    class UIToggle : UIToggleBase
+    public class UIToggle : UIToggleBase
     {
         private LayoutPanel checkMark;
         private Image image;

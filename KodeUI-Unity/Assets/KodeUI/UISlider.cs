@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace KodeUI
 {
-	class UISlider : UIObject
+	public class UISlider : UIObject
 	{
 		public Slider slider { get; private set; }
 

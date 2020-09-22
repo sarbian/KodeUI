@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace KodeUI
 {
-   public class UIKit
+    public class UIKit
     {
         public static T CreateUI<T>(RectTransform rectTransform, string id) where T : UIObject
         {
