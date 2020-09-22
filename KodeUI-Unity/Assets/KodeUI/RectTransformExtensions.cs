@@ -17,7 +17,6 @@ namespace KodeUI
         BottomLeft,
         BottomCenter,
         BottomRight,
-        BottomStretch,
  
         VertStretchLeft,
         VertStretchRight,
