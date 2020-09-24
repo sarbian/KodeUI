@@ -32,6 +32,7 @@ namespace KodeUI {
 			{
 				yield return StartCoroutine (SpriteLoader.LoadSprites ());
 				yield return StartCoroutine (ImageLoader.LoadImages ());
+				yield return StartCoroutine (Style.LoadStyles ());
 				done = true;
 			}
 

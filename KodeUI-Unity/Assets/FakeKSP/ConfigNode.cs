@@ -141,6 +141,20 @@ namespace KodeUI
 			return values;
 		}
 
+		public static Color ParseColor (string text)
+		{
+			var values = ParseFloatArray(text);
+			if (values.Length < 3 || values.Length > 4) {
+				Debug.LogWarning ($"Color entry not formated correctly: {text}");
+				return Color.white;
+			}
+			if (values.Length == 3) {
+				return new Color (values[0], values[1], values[2]);
+			} else {
+				return new Color (values[0], values[1], values[2], values[3]);
+			}
+		}
+
 		public bool TryGetValue (string name, ref string value)
 		{
 			string str = GetValue (name);

@@ -20,7 +20,6 @@ namespace KodeUI
 			UIImage background;
 			UIText text;
 
-			public UIImage Background { get { return background; } }
 			public UIText Text { get { return text; } }
 
 			public override void CreateUI()
@@ -39,6 +38,12 @@ namespace KodeUI
 
 			public override void Style()
 			{
+				toggle.image.sprite = style.checkmark;
+				toggle.colors = style.stateColors ?? ColorBlock.defaultColorBlock;
+				background.image.sprite = style.standard;
+				background.image.color = style.color ?? UnityEngine.Color.white;
+
+				text.tmpText.color = style.textColor ?? UnityEngine.Color.gray;
 			}
 		}
 
@@ -78,7 +83,7 @@ namespace KodeUI
         public override void CreateUI()
 		{
 			background = gameObject.AddComponent<Image>();
-			background.color = Color.white;
+			background.color = UnityEngine.Color.white;
 			ImageLoader.SetupImage (background, "KodeUI/Default/background");
 
 			dropdown = gameObject.AddComponent<TMP_Dropdown>();

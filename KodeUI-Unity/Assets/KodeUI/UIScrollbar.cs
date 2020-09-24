@@ -14,7 +14,7 @@ namespace KodeUI
 		public override void CreateUI()
 		{
 			image = gameObject.AddComponent<Image>();
-			image.color = Color.white;
+			image.color = UnityEngine.Color.white;
 			ImageLoader.SetupImage (image, "KodeUI/Default/background");
 
 			scrollbar = gameObject.AddComponent<Scrollbar>();
@@ -32,12 +32,18 @@ namespace KodeUI
 			handleRect.sizeDelta = Vector2.zero;
 			scrollbar.handleRect = handleRect;
 			handle = go.AddComponent<Image>();
-			handle.color = Color.white;
+			handle.color = UnityEngine.Color.white;
 			ImageLoader.SetupImage (handle, "KodeUI/Default/background");
 		}
 
 		public override void Style()
 		{
+			scrollbar.colors = style.stateColors ?? ColorBlock.defaultColorBlock;
+			handle.sprite = style.standard;
+			handle.color = style.color ?? UnityEngine.Color.white;
+
+			image.sprite = style.background;
+			image.color = style.color ?? UnityEngine.Color.white;
 		}
 
 		public UIScrollbar Direction(Scrollbar.Direction direction)

@@ -12,11 +12,11 @@ namespace KodeUI
         {
             Pivot(PivotPresets.TopLeft);
             image = gameObject.AddComponent<Image>();
-            image.color = UnityEngine.Color.white;
         }
 
         public override void Style()
         {
+            image.color = style.imageColor ?? UnityEngine.Color.white;
         }
 
         public UIImage Image(Sprite sprite)
@@ -28,12 +28,6 @@ namespace KodeUI
         public UIImage Type(Image.Type type)
         {
             image.type = type;
-            return this;
-        }
-
-        public UIImage Color(Color color)
-        {
-            image.color = color;
             return this;
         }
     }

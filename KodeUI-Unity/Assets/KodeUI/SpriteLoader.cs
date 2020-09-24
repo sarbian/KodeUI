@@ -13,6 +13,10 @@ namespace KodeUI
 		{
 			Sprite s = null;
 			sprites.TryGetValue (name, out s);
+			Debug.Log ($"[SpriteLoader] GetSprite {name} {s}");
+			if (s == null) {
+				return null;
+			}
 			return Sprite.Instantiate(s);
 		}
 

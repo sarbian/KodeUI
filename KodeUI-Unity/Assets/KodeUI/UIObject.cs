@@ -115,6 +115,8 @@ namespace KodeUI
 
         public abstract void Style();
 
+        public Style style { get; private set; } = new Style(KodeUI.Style.defaultStyle);
+
         public T Add<T>(string id = null) where T : UIObject
         {
             if (id == null)
@@ -319,6 +321,72 @@ namespace KodeUI
         public UIObject BlocksRaycasts(bool state)
         {
             CanvasGroup.blocksRaycasts = state;
+            return this;
+        }
+
+        public UIObject StateColors(ColorBlock colors)
+        {
+            style.stateColors = colors;
+            return this;
+        }
+
+        public UIObject Color (Color color)
+        {
+            style.color = color;
+            return this;
+        }
+
+        public UIObject TextColor (Color color)
+        {
+            style.textColor = color;
+            return this;
+        }
+
+        public UIObject ImageColor (Color color)
+        {
+            style.imageColor = color;
+            return this;
+        }
+
+        public UIObject Standard (Sprite sprite)
+        {
+            style.standard = sprite;
+            return this;
+        }
+
+        public UIObject Background (Sprite sprite)
+        {
+            style.background = sprite;
+            return this;
+        }
+
+        public UIObject InputField (Sprite sprite)
+        {
+            style.inputField = sprite;
+            return this;
+        }
+
+        public UIObject Knob (Sprite sprite)
+        {
+            style.knob = sprite;
+            return this;
+        }
+
+        public UIObject Checkmark (Sprite sprite)
+        {
+            style.checkmark = sprite;
+            return this;
+        }
+
+        public UIObject Dropdown (Sprite sprite)
+        {
+            style.dropdown = sprite;
+            return this;
+        }
+
+        public UIObject Mask (Sprite sprite)
+        {
+            style.mask = sprite;
             return this;
         }
     }

@@ -15,14 +15,7 @@ namespace KodeUI
             image = gameObject.AddComponent<Image>();
             toggle.targetGraphic = image;
 
-            ColorBlock colors = toggle.colors;
-            colors.highlightedColor = Color.magenta;
-            colors.pressedColor     = new Color(0.0f, 0.8f, 0.1f);
-            colors.disabledColor    = Color.clear;
-            colors.normalColor      = Color.white;
-            toggle.colors = colors;
-            
-            Add<LayoutPanel>(out checkMark, "CheckMark").Anchor(AnchorPresets.StretchAll).Pivot(PivotPresets.MiddleCenter).Scale(0.625f).Finish();
+            Add<LayoutPanel>(out checkMark, "CheckMark").Anchor(AnchorPresets.StretchAll).Pivot(PivotPresets.MiddleCenter).Finish();
             toggle.graphic = checkMark.BackGround;
 
             // TODO This should be handled in a parent class with some logic related to Stretch axis. In Finish ? Might need something similar with anchoredPosition
@@ -32,8 +25,13 @@ namespace KodeUI
         public override void Style()
         {
             base.Style();
-            ImageLoader.SetupImage(image,"KodeUI/Default/toggle");
-            checkMark.Background("KodeUI/Default/toggle_on").BackgroundColor(Color.white);
+            image.sprite = style.standard;
+            image.color = style.color ?? UnityEngine.Color.white;
+
+            checkMark.BackGround.sprite = style.checkmark;
+            checkMark.BackGround.color = style.color ?? UnityEngine.Color.white;;
+
+            toggle.colors = style.stateColors ?? ColorBlock.defaultColorBlock;;
         }
     }
 }

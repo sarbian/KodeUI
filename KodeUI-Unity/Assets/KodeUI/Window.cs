@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace KodeUI
 {
-    public class Window : LayoutPanel, IBeginDragHandler, IDragHandler, IEndDragHandler
+    public class Window : LayoutPanel, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler
     {
         private bool isDragging = false;
         private RectTransform canvasRectTransform;
@@ -17,13 +17,16 @@ namespace KodeUI
             Canvas canvas = GetComponentInParent<Canvas>();
             canvasRectTransform = canvas.GetComponent<RectTransform>();
             
-            BackgroundColor(Color.white);
+            BackgroundColor(UnityEngine.Color.white);
         }
 
         public override void Style()
         {
             base.Style();
-            ImageLoader.SetupImage(BackGround,"KodeUI/Default/window");
+
+            BackGround.sprite = style.background;
+            BackGround.color = style.color ?? UnityEngine.Color.white;
+
             Padding(4, 4, 0, 4);
         }
 
@@ -58,6 +61,16 @@ namespace KodeUI
         public virtual void OnEndDrag(PointerEventData eventData)
         {
             isDragging = false;
+        }
+
+        public virtual void OnPointerDown(PointerEventData eventData)
+        {
+            Debug.Log($"[Window] OnPointerDown {eventData.button}");
+            if (eventData.button == PointerEventData.InputButton.Left) {
+                rectTransform.SetAsLastSibling();
+            } else if (eventData.button == PointerEventData.InputButton.Middle) {
+                rectTransform.SetAsFirstSibling();
+            }
         }
     }
 }

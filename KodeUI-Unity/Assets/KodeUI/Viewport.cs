@@ -12,7 +12,7 @@ namespace KodeUI
 		public override void CreateUI()
 		{
 			image = gameObject.AddComponent<Image>();
-			image.color = Color.white;
+			image.color = UnityEngine.Color.white;
 			ImageLoader.SetupImage (image, "KodeUI/Default/mask");
 
 			mask = gameObject.AddComponent<Mask>();
@@ -21,6 +21,7 @@ namespace KodeUI
 
 		public override void Style()
 		{
+			image.sprite = style.mask;
 		}
 	}
 }
