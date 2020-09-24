@@ -26,7 +26,7 @@ namespace KodeUI
 			{
 				toggle = gameObject.AddComponent<Toggle>();
 
-				Add<UIImage>(out background).Anchor(AnchorPresets.StretchAll).SizeDelta(0, 0).Finish()
+				Add<UIImage>(out background).Type(Image.Type.Sliced).Anchor(AnchorPresets.StretchAll).SizeDelta(0, 0).Finish()
 				.Add<UIText>(out text).Text("Item").Anchor(AnchorPresets.StretchAll).SizeDelta(0, 0).Finish();
 				Anchor(AnchorPresets.HorStretchMiddle);
 				Pivot(PivotPresets.MiddleCenter);
