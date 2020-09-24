@@ -111,6 +111,10 @@ namespace KodeUI
 
         public override void Style()
 		{
+			arrow.image.sprite = style.dropdown;
+			arrow.image.color = style.color ?? UnityEngine.Color.white;
+
+			dropdown.colors = style.stateColors ?? ColorBlock.defaultColorBlock;
 		}
 
 		public UIDropdown Options(List<OptionData> options)
