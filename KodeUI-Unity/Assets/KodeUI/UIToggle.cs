@@ -1,35 +1,45 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 namespace KodeUI
 {
-    public class UIToggle : UIToggleBase
+    public class UIToggle : UIObject
     {
-        private LayoutPanel checkMark;
+        private UIImage checkMark;
         private Image image;
+        protected Toggle toggle;
+
+        public bool isOn
+        {
+            get { return toggle.isOn; }
+        }
 
         public override void CreateUI()
         {
-            base.CreateUI();
-            
+            Pivot(PivotPresets.MiddleCenter);
+            toggle = gameObject.AddComponent<Toggle>();
+
             image = gameObject.AddComponent<Image>();
             toggle.targetGraphic = image;
 
-            Add<LayoutPanel>(out checkMark, "CheckMark").Anchor(AnchorPresets.StretchAll).Pivot(PivotPresets.MiddleCenter).Finish();
-            toggle.graphic = checkMark.BackGround;
+            Add<UIImage>(out checkMark, "CheckMark").Anchor(AnchorPresets.StretchAll).Pivot(PivotPresets.MiddleCenter).SizeDelta(0, 0).Finish();
+            toggle.graphic = checkMark.image;
+        }
 
-            // TODO This should be handled in a parent class with some logic related to Stretch axis. In Finish ? Might need something similar with anchoredPosition
-            checkMark.rectTransform.sizeDelta = Vector2.zero;
+        public UIToggle OnClick(UnityAction<bool> action)
+        {
+            toggle.onValueChanged.AddListener(action);
+            return this;
         }
 
         public override void Style()
         {
-            base.Style();
             image.sprite = style.standard;
             image.color = style.color ?? UnityEngine.Color.white;
 
-            checkMark.BackGround.sprite = style.checkmark;
-            checkMark.BackGround.color = style.color ?? UnityEngine.Color.white;;
+            checkMark.image.sprite = style.checkmark;
+            checkMark.image.color = style.color ?? UnityEngine.Color.white;;
 
             toggle.colors = style.stateColors ?? ColorBlock.defaultColorBlock;;
         }
