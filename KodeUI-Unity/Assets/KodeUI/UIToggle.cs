@@ -10,6 +10,8 @@ namespace KodeUI
         protected Image image;
         protected Toggle toggle;
 
+        public UIImage CheckMark { get { return checkMark; } }
+
         public bool isOn
         {
             get { return toggle.isOn; }
@@ -36,13 +38,15 @@ namespace KodeUI
 
         public override void Style()
         {
-            image.sprite = style.standard;
+            image.sprite = style.sprite;
             image.color = style.color ?? UnityEngine.Color.white;
 
-            checkMark.image.sprite = style.checkmark;
-            checkMark.image.color = style.color ?? UnityEngine.Color.white;;
-
             toggle.colors = style.stateColors ?? ColorBlock.defaultColorBlock;;
+            toggle.transition = style.transition ?? Selectable.Transition.ColorTint;
+            if (style.stateSprites.HasValue) {
+                toggle.spriteState = style.stateSprites.Value;
+            }
+
         }
     }
 }

@@ -98,7 +98,7 @@ namespace KodeUI
 		public override void Style()
 		{
 			base.Style();
-			backGround.sprite = style.background;
+			backGround.sprite = style.sprite;
 			backGround.color = style.color ?? UnityEngine.Color.clear;
 		}
 

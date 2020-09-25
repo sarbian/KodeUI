@@ -11,19 +11,9 @@ namespace KodeUI
     {
 		public ColorBlock? stateColors { get; set; }
 		public Color? color { get; set; }
-		public Color? textColor { get; set; }
-		public Color? imageColor { get; set; }
-		public Sprite standard { get; set; }
-		public Sprite background { get; set; }
-		public Sprite inputField { get; set; }
-		public Sprite knob { get; set; }
-		public Sprite checkmark { get; set; }
-		public Sprite dropdown { get; set; }
-		public Sprite mask { get; set; }
-
-		public static Style defaultStyle { get; private set; }
-
-		public static Dictionary<string, Style> styles { get; private set; }
+		public Sprite sprite { get; set; }
+		public SpriteState? stateSprites { get; set; }
+		public Selectable.Transition? transition { get; set; }
 
 		static Color? ParseColor (string str)
 		{
@@ -73,20 +63,45 @@ namespace KodeUI
 			return colorBlock;
 		}
 
+		static SpriteState? ParseSpriteState (ConfigNode node)
+		{
+			if (node == null) {
+				return null;
+			}
+			SpriteState sprites = new SpriteState();
+
+			{if (SpriteLoader.GetSprite (node.GetValue ("highlightedSprite")) is Sprite s) {
+				sprites.highlightedSprite = s;
+			}}
+			{if (SpriteLoader.GetSprite (node.GetValue ("pressedSprite")) is Sprite s) {
+				sprites.pressedSprite = s;
+			}}
+			{if (SpriteLoader.GetSprite (node.GetValue ("selectedSprite")) is Sprite s) {
+				sprites.selectedSprite = s;
+			}}
+			{if (SpriteLoader.GetSprite (node.GetValue ("disabledSprite")) is Sprite s) {
+				sprites.disabledSprite = s;
+			}}
+			return sprites;
+		}
+
+		static Selectable.Transition? ParseTransition (string str)
+		{
+			if (String.IsNullOrEmpty (str)) {
+				return null;
+			}
+			Selectable.Transition transition = Selectable.Transition.ColorTint;
+			transition = KodeUI_Utils.ToEnum<Selectable.Transition> (str, transition);
+			return transition;
+		}
+
 		public Style ()
 		{
 			stateColors = ColorBlock.defaultColorBlock;
 			color = Color.white;
-			textColor = Color.gray;
-			imageColor = Color.white;
-			standard = SpriteLoader.GetSprite ("KodeUI/Default/standard");
-			background = SpriteLoader.GetSprite ("KodeUI/Default/background");
-			inputField = SpriteLoader.GetSprite ("KodeUI/Default/inputField");
-			knob = SpriteLoader.GetSprite ("KodeUI/Default/knob");
-			checkmark = SpriteLoader.GetSprite ("KodeUI/Default/checkmark");
-			dropdown = SpriteLoader.GetSprite ("KodeUI/Default/dropdown");
-			mask = SpriteLoader.GetSprite ("KodeUI/Default/mask");
-			Debug.Log($"[Style] {stateColors} {color} {textColor} {imageColor} {standard} {background} {inputField} {knob} {checkmark} {dropdown} {mask}");
+			sprite = SpriteLoader.GetSprite ("KodeUI/Default/standard");
+			// stateSprites can default to null
+			transition = Selectable.Transition.ColorTint;
 		}
 
 		public Style (ConfigNode node)
@@ -98,15 +113,9 @@ namespace KodeUI
 		{
 			stateColors = style.stateColors;
 			color = style.color;
-			textColor = style.textColor;
-			imageColor = style.imageColor;
-			standard = style.standard;
-			background = style.background;
-			inputField = style.inputField;
-			knob = style.knob;
-			checkmark = style.checkmark;
-			dropdown = style.dropdown;
-			mask = style.mask;
+			sprite = style.sprite;
+			stateSprites = style.stateSprites;
+			transition = style.transition;
 		}
 
 		public Style Merge (Style overrideStyle)
@@ -117,37 +126,19 @@ namespace KodeUI
 			{if (overrideStyle.color is Color c) {
 				color = c;
 			}}
-			{if (overrideStyle.textColor is Color c) {
-				textColor = c;
+			{if (overrideStyle.sprite is Sprite s) {
+				sprite = s;
 			}}
-			{if (overrideStyle.imageColor is Color c) {
-				imageColor = c;
+			{if (overrideStyle.stateSprites is SpriteState s) {
+				stateSprites = s;
 			}}
-			{if (overrideStyle.standard is Sprite s) {
-				standard = s;
-			}}
-			{if (overrideStyle.background is Sprite s) {
-				background = s;
-			}}
-			{if (overrideStyle.inputField is Sprite s) {
-				inputField = s;
-			}}
-			{if (overrideStyle.knob is Sprite s) {
-				knob = s;
-			}}
-			{if (overrideStyle.checkmark is Sprite s) {
-				checkmark = s;
-			}}
-			{if (overrideStyle.dropdown is Sprite s) {
-				dropdown = s;
-			}}
-			{if (overrideStyle.mask is Sprite s) {
-				mask = s;
+			{if (overrideStyle.transition is Selectable.Transition t) {
+				transition = t;
 			}}
 			return this;
 		}
 
-		void Load (ConfigNode node)
+		public void Load (ConfigNode node)
 		{
 			{if (ParseColorBlock (node.GetNode ("stateColors")) is ColorBlock cb) {
 				stateColors = cb;
@@ -155,53 +146,15 @@ namespace KodeUI
 			{if (ParseColor (node.GetValue ("color")) is Color c) {
 				color = c;
 			}}
-			{if (ParseColor (node.GetValue ("textColor")) is Color c) {
-				textColor = c;
+			{if (SpriteLoader.GetSprite (node.GetValue ("sprite")) is Sprite s) {
+				sprite = s;
 			}}
-			{if (ParseColor (node.GetValue ("imageColor")) is Color c) {
-				imageColor = c;
+			{if (ParseSpriteState (node.GetNode ("stateSprites")) is SpriteState s) {
+				stateSprites = s;
 			}}
-			{if (SpriteLoader.GetSprite (node.GetValue ("standard")) is Sprite s) {
-				standard = s;
+			{if (ParseTransition (node.GetValue ("transition")) is Selectable.Transition t) {
+				transition = t;
 			}}
-			{if (SpriteLoader.GetSprite (node.GetValue ("background")) is Sprite s) {
-				background = s;
-			}}
-			{if (SpriteLoader.GetSprite (node.GetValue ("inputField")) is Sprite s) {
-				inputField = s;
-			}}
-			{if (SpriteLoader.GetSprite (node.GetValue ("knob")) is Sprite s) {
-				knob = s;
-			}}
-			{if (SpriteLoader.GetSprite (node.GetValue ("checkmark")) is Sprite s) {
-				checkmark = s;
-			}}
-			{if (SpriteLoader.GetSprite (node.GetValue ("dropdown")) is Sprite s) {
-				dropdown = s;
-			}}
-			{if (SpriteLoader.GetSprite (node.GetValue ("mask")) is Sprite s) {
-				mask = s;
-			}}
-		}
-
-		public static IEnumerator LoadStyles()
-		{
-			var dbase = GameDatabase.Instance;
-			var node_list = dbase.GetConfigNodes ("KodeUI_Style");
-			defaultStyle = new Style ();
-			for (int i = 0; i < node_list.Length; i++) {
-				Style style;
-				var node = node_list[i];
-				string name = node.GetValue ("name");
-				if (String.IsNullOrEmpty (name) || name == "default") {
-					style = defaultStyle;
-					style.Load (node);
-				} else {
-					style = new Style(node);
-					styles[name] = style;
-				}
-				yield return null;
-			}
 		}
     }
 }

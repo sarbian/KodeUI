@@ -7,6 +7,15 @@ namespace KodeUI
     {
         private HorizontalOrVerticalLayoutGroup lg;
     
+		protected override string GetStylePath(bool isParent=false)
+		{
+			if (isParent) {
+				return GetParentStylePath ();
+			} else {
+				return base.GetStylePath(isParent);
+			}
+		}
+
         public override void CreateUI()
         {
             Pivot(PivotPresets.TopLeft);

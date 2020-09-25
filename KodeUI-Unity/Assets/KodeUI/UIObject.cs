@@ -115,7 +115,8 @@ namespace KodeUI
 
         public abstract void Style();
 
-        public Style style { get; private set; } = new Style(KodeUI.Style.defaultStyle);
+        public Style style { get; private set; }
+        public Skin skin { get; set; }
 
         public T Add<T>(string id = null) where T : UIObject
         {
@@ -133,15 +134,61 @@ namespace KodeUI
             return child;
         }
 
+        public void SetupStyle()
+        {
+            Skin skin = GetSkin ();
+            string stylePath = GetStylePath ();
+            style = skin[stylePath];
+            Debug.Log($"[UIObject] SetupStyle {stylePath} {skin.ContainsStyle(stylePath)}");
+        }
+
+        protected UIObject GetParent()
+        {
+            if (rectTransform.parent) {
+                UIObject parent = rectTransform.parent.GetComponent<UIObject>();
+                return parent;
+            }
+            return null;
+        }
+
+        protected string GetParentStylePath()
+        {
+            if (skin == null) {
+                UIObject parent = GetParent ();
+                if (parent != null) {
+                    return parent.GetStylePath(true);
+                }
+            }
+            return "";
+        }
+
+        protected virtual string GetStylePath(bool isParent=false)
+        {
+            string path = GetParentStylePath ();
+            if (path.Length > 0) {
+                path = path + ".";
+            }
+            return path + gameObject.name;
+        }
+
         public UIObject Finish()
         {
             Style();
 
-            if (!rectTransform.parent)
-                return null;
-
-            UIObject parent = rectTransform.parent.GetComponent<UIObject>();
+            UIObject parent = GetParent ();
             return parent != null ? parent : this;
+        }
+
+        protected Skin GetSkin()
+        {
+            if (skin != null) {
+                return skin;
+            }
+            UIObject parent = GetParent ();
+            if (parent != null) {
+                return parent.GetSkin();
+            }
+            return Skin.defaultSkin;
         }
 
         public Vector2 GetParentSize ()
@@ -324,9 +371,21 @@ namespace KodeUI
             return this;
         }
 
+        public UIObject Transition(Selectable.Transition transition)
+        {
+            style.transition = transition;
+            return this;
+        }
+
         public UIObject StateColors(ColorBlock colors)
         {
             style.stateColors = colors;
+            return this;
+        }
+
+        public UIObject StateSprites(SpriteState sprites)
+        {
+            style.stateSprites = sprites;
             return this;
         }
 
@@ -336,57 +395,9 @@ namespace KodeUI
             return this;
         }
 
-        public UIObject TextColor (Color color)
+        public UIObject Sprite (Sprite sprite)
         {
-            style.textColor = color;
-            return this;
-        }
-
-        public UIObject ImageColor (Color color)
-        {
-            style.imageColor = color;
-            return this;
-        }
-
-        public UIObject Standard (Sprite sprite)
-        {
-            style.standard = sprite;
-            return this;
-        }
-
-        public UIObject Background (Sprite sprite)
-        {
-            style.background = sprite;
-            return this;
-        }
-
-        public UIObject InputField (Sprite sprite)
-        {
-            style.inputField = sprite;
-            return this;
-        }
-
-        public UIObject Knob (Sprite sprite)
-        {
-            style.knob = sprite;
-            return this;
-        }
-
-        public UIObject Checkmark (Sprite sprite)
-        {
-            style.checkmark = sprite;
-            return this;
-        }
-
-        public UIObject Dropdown (Sprite sprite)
-        {
-            style.dropdown = sprite;
-            return this;
-        }
-
-        public UIObject Mask (Sprite sprite)
-        {
-            style.mask = sprite;
+            style.sprite = sprite;
             return this;
         }
     }

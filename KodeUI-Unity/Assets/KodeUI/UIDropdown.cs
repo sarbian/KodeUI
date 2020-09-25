@@ -24,7 +24,7 @@ namespace KodeUI
 			{
 				base.CreateUI();
 
-				Add<UIText>(out text).Text("ItemText").Anchor(AnchorPresets.StretchAll).SizeDelta(0, 0).Finish();
+				Add<UIText>(out text, "ItemText").Text("ItemText").Anchor(AnchorPresets.StretchAll).SizeDelta(0, 0).Finish();
 
 				Anchor(AnchorPresets.HorStretchMiddle);
 				Pivot(PivotPresets.MiddleCenter);
@@ -100,10 +100,12 @@ namespace KodeUI
 
         public override void Style()
 		{
-			arrow.image.sprite = style.dropdown;
-			arrow.image.color = style.color ?? UnityEngine.Color.white;
-
 			dropdown.colors = style.stateColors ?? ColorBlock.defaultColorBlock;
+			if (style.stateSprites.HasValue) {
+				dropdown.spriteState = style.stateSprites.Value;
+			}
+			background.sprite = style.sprite;
+			background.color = style.color ?? UnityEngine.Color.white;
 		}
 
 		public UIDropdown Options(List<OptionData> options)

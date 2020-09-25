@@ -14,6 +14,10 @@ namespace KodeUI
 		UIImage handle;
 		UIEmpty handleArea;
 
+		public UIImage Background { get { return background; } }
+		public UIImage Fill { get { return fill; } }
+		public UIImage Handle { get { return handle; } }
+
 		public override void CreateUI()
 		{
 			slider = gameObject.AddComponent<Slider>();
@@ -35,14 +39,12 @@ namespace KodeUI
 
 		public override void Style()
 		{
-			background.image.sprite = style.background;
-			background.image.color = style.color ?? UnityEngine.Color.white;
-			handle.image.sprite = style.knob;
-			handle.image.color = style.color ?? UnityEngine.Color.white;
-			fill.image.sprite = style.standard;
-			fill.image.color = style.imageColor ?? UnityEngine.Color.white;
-
 			slider.colors = style.stateColors ?? ColorBlock.defaultColorBlock;
+			slider.transition = style.transition ?? Selectable.Transition.ColorTint;
+			if (style.stateSprites.HasValue) {
+				slider.spriteState = style.stateSprites.Value;
+			}
+
 		}
 
 		public UISlider Direction(Slider.Direction direction)
@@ -51,7 +53,7 @@ namespace KodeUI
 			return this;
 		}
 
-		public UISlider Handle(bool enabled)
+		public UISlider ShowHandle(bool enabled)
 		{
 			handle.gameObject.SetActive (enabled);
 			if (enabled) {

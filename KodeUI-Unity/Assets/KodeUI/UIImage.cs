@@ -16,7 +16,8 @@ namespace KodeUI
 
         public override void Style()
         {
-            image.color = style.imageColor ?? UnityEngine.Color.white;
+            image.sprite = style.sprite;
+            image.color = style.color ?? UnityEngine.Color.white;
         }
 
         public UIImage Image(Sprite sprite)

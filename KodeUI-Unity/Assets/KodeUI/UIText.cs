@@ -16,7 +16,7 @@ namespace KodeUI
         public override void Style()
         {
             tmpText.fontSize = 18;
-            tmpText.color = style.textColor ?? UnityEngine.Color.white;
+            tmpText.color = style.color ?? UnityEngine.Color.white;
         }
 
         public UIText Text(string text)

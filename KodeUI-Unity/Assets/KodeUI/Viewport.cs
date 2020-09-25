@@ -9,6 +9,15 @@ namespace KodeUI
 		Image image;
 		Mask mask;
 
+		protected override string GetStylePath(bool isParent=false)
+		{
+			if (isParent) {
+				return GetParentStylePath ();
+			} else {
+				return base.GetStylePath(isParent);
+			}
+		}
+
 		public override void CreateUI()
 		{
 			image = gameObject.AddComponent<Image>();
@@ -21,7 +30,7 @@ namespace KodeUI
 
 		public override void Style()
 		{
-			image.sprite = style.mask;
+			image.sprite = style.sprite;
 		}
 	}
 }

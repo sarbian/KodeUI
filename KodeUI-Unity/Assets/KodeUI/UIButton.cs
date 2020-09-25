@@ -16,10 +16,8 @@ namespace KodeUI
         {
             Horizontal().ChildForceExpand(false, false).ControlChildSize(true, true).Pivot(PivotPresets.TopLeft);
 
-            // TODO UIButton (and UIToggle) seems to share the base of a UIPanel ? Use that as parent ?
-
             image = gameObject.AddComponent<Image>();
-            
+            image.type = UnityEngine.UI.Image.Type.Sliced;
             image.color = UnityEngine.Color.white;
 
             button = gameObject.AddComponent<Button>();
@@ -31,9 +29,13 @@ namespace KodeUI
             ImageLoader.SetupImage(image,"KodeUI/Default/button_on");
             Padding(3);
 
+			button.transition = style.transition ?? Selectable.Transition.ColorTint;
+			if (style.stateSprites.HasValue) {
+				button.spriteState = style.stateSprites.Value;
+			}
             button.colors = style.stateColors ?? ColorBlock.defaultColorBlock;
-            Debug.Log($"[UIButton] Style sc:{style.stateColors} c:{style.color} tc:{style.textColor} ic:{style.imageColor} s:{style.standard} b:{style.background} i:{style.inputField} k:{style.knob} c:{style.checkmark} d:{style.dropdown} m:{style.mask}");
-            image.sprite = style.standard;
+
+            image.sprite = style.sprite;
             image.color = style.color ?? UnityEngine.Color.white;
         }
         

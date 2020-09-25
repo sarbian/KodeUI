@@ -24,7 +24,7 @@ namespace KodeUI
         {
             base.Style();
 
-            BackGround.sprite = style.background;
+            BackGround.sprite = style.sprite;
             BackGround.color = style.color ?? UnityEngine.Color.white;
 
             Padding(4, 4, 0, 4);

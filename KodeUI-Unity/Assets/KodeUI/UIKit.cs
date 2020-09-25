@@ -15,6 +15,7 @@ namespace KodeUI
 
             rect.anchoredPosition3D = Vector3.zero;
 
+            child.SetupStyle();
             child.CreateUI();
             return child;
         }

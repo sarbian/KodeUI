@@ -29,10 +29,13 @@ namespace KodeUI
 		public override void Style()
 		{
 			scrollbar.colors = style.stateColors ?? ColorBlock.defaultColorBlock;
-			handle.image.sprite = style.standard;
-			handle.image.color = style.color ?? UnityEngine.Color.white;
+			scrollbar.transition = style.transition ?? Selectable.Transition.ColorTint;
 
-			image.sprite = style.background;
+			if (style.stateSprites.HasValue) {
+				scrollbar.spriteState = style.stateSprites.Value;
+			}
+
+			image.sprite = style.sprite;
 			image.color = style.color ?? UnityEngine.Color.white;
 		}
 
