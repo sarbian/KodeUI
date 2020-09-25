@@ -14,36 +14,25 @@ namespace KodeUI
 		TMP_Dropdown dropdown;
 		ScrollView scrollView;
 
-		public class TextItem : UIObject
+		public class TextItem : UIToggle
 		{
-			Toggle toggle;
-			UIImage background;
 			UIText text;
 
 			public UIText Text { get { return text; } }
 
 			public override void CreateUI()
 			{
-				toggle = gameObject.AddComponent<Toggle>();
+				base.CreateUI();
 
-				Add<UIImage>(out background).Type(Image.Type.Sliced).Anchor(AnchorPresets.StretchAll).SizeDelta(0, 0).Finish()
-				.Add<UIText>(out text).Text("Item").Anchor(AnchorPresets.StretchAll).SizeDelta(0, 0).Finish();
+				Add<UIText>(out text).Text("ItemText").Anchor(AnchorPresets.StretchAll).SizeDelta(0, 0).Finish();
+
 				Anchor(AnchorPresets.HorStretchMiddle);
 				Pivot(PivotPresets.MiddleCenter);
 				Vector2 size = text.tmpText.GetPreferredValues ();
 				SizeDelta(0, size.y);
 
-				toggle.image = background.image;
-			}
-
-			public override void Style()
-			{
-				toggle.image.sprite = style.checkmark;
-				toggle.colors = style.stateColors ?? ColorBlock.defaultColorBlock;
-				background.image.sprite = style.standard;
-				background.image.color = style.color ?? UnityEngine.Color.white;
-
-				text.tmpText.color = style.textColor ?? UnityEngine.Color.gray;
+				checkMark.Anchor(AnchorPresets.VertStretchLeft).Pivot(PivotPresets.MiddleLeft).SizeDelta(size.y, 0);
+				text.SizeDelta(-size.y, 0).X(size.y);
 			}
 		}
 

@@ -6,8 +6,8 @@ namespace KodeUI
 {
     public class UIToggle : UIObject
     {
-        private UIImage checkMark;
-        private Image image;
+        protected UIImage checkMark;
+        protected Image image;
         protected Toggle toggle;
 
         public bool isOn
