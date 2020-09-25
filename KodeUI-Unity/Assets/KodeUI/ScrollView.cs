@@ -88,7 +88,7 @@ namespace KodeUI
 
 			scrollRect = gameObject.AddComponent<ScrollRect>();
 
-			Add<Viewport>(out viewport).Anchor(AnchorPresets.StretchAll).SizeDelta(0, 0)
+			Add<Viewport>(out viewport, "Viewport").Anchor(AnchorPresets.StretchAll).SizeDelta(0, 0)
 				.Add<Layout>(out content, "Content")
 			.Finish();
 			Viewport = viewport;
