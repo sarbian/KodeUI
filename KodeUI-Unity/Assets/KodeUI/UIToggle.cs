@@ -21,6 +21,7 @@ namespace KodeUI
             toggle = gameObject.AddComponent<Toggle>();
 
             image = gameObject.AddComponent<Image>();
+            image.type = Image.Type.Sliced;
             toggle.targetGraphic = image;
 
             Add<UIImage>(out checkMark, "CheckMark").Anchor(AnchorPresets.StretchAll).Pivot(PivotPresets.MiddleCenter).SizeDelta(0, 0).Finish();
