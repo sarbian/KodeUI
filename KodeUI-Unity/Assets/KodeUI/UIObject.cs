@@ -139,7 +139,7 @@ namespace KodeUI
             Skin skin = GetSkin ();
             string stylePath = GetStylePath ();
             style = skin[stylePath];
-            Debug.Log($"[UIObject] SetupStyle {stylePath} {skin.ContainsStyle(stylePath)}");
+            //Debug.Log($"[UIObject] SetupStyle {stylePath} {skin.ContainsStyle(stylePath)}");
         }
 
         protected UIObject GetParent()
