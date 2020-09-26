@@ -22,7 +22,6 @@ namespace KodeUI
 		{
 			image = gameObject.AddComponent<Image>();
 			image.color = UnityEngine.Color.white;
-			ImageLoader.SetupImage (image, "KodeUI/Default/mask");
 
 			mask = gameObject.AddComponent<Mask>();
 			mask.showMaskGraphic = false;

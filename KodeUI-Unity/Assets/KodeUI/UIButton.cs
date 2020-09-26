@@ -26,7 +26,6 @@ namespace KodeUI
 
         public override void Style()
         {
-            ImageLoader.SetupImage(image,"KodeUI/Default/button_on");
             Padding(3);
 
 			button.transition = style.transition ?? Selectable.Transition.ColorTint;

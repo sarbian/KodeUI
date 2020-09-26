@@ -73,7 +73,7 @@ namespace KodeUI
 		{
 			background = gameObject.AddComponent<Image>();
 			background.color = UnityEngine.Color.white;
-			ImageLoader.SetupImage (background, "KodeUI/Default/background");
+			background.type = Image.Type.Sliced;
 
 			dropdown = gameObject.AddComponent<TMP_Dropdown>();
 
