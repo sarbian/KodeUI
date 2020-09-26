@@ -37,11 +37,10 @@ public class UITester : LoadingSystem
         if (testUI)
             return;
 
-        LayoutPanel basePanel = UIKit.CreateUI<Window>(appCanvas.transform as RectTransform, "testUI");
+        Window basePanel = UIKit.CreateUI<Window>(appCanvas.transform as RectTransform, "testUI");
         testUI = basePanel.gameObject;
 
-        basePanel.Vertical().ControlChildSize(true, true).ChildForceExpand(false,false).PreferredSizeFitter(true, true).Anchor(AnchorPresets.MiddleCenter).Pivot(PivotPresets.TopLeft).PreferredWidth(300).Finish()
-            .Add<UIText>().Text("A test").Alignment(TextAlignmentOptions.Top).FlexibleLayout(true,false).Pivot(PivotPresets.TopCenter).BlocksRaycasts(false).Finish()
+        basePanel.Title("A test").Vertical().ControlChildSize(true, true).ChildForceExpand(false,false).PreferredSizeFitter(true, true).Anchor(AnchorPresets.MiddleCenter).Pivot(PivotPresets.TopLeft).PreferredWidth(300).Finish()
             .Add<UIButton>().Text("Button A").OnClick(ButtonAction).FlexibleLayout(true,false).Finish()
             .Add<Layout>().Horizontal().ControlChildSize(true, true).ChildForceExpand(false,false).Anchor(AnchorPresets.HorStretchTop).FlexibleLayout(true,false)
 				.Add<UIEmpty>().FlexibleLayout(true, true).Finish()
