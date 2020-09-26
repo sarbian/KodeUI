@@ -25,6 +25,12 @@ namespace KodeUI
         {
         }
 
+        public Layout VertiLink()
+        {
+            lg = gameObject.AddComponent<VertiLinkLayoutGroup>();
+            return this;
+        }
+
         public Layout Vertical()
         {
             lg = gameObject.AddComponent<VerticalLayoutGroup>();
