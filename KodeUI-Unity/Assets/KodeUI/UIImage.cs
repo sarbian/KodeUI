@@ -22,6 +22,7 @@ namespace KodeUI
 
         public UIImage Image(Sprite sprite)
         {
+            style.sprite = sprite;
             image.sprite = sprite;
             return this;
         }
