@@ -364,6 +364,15 @@ namespace KodeUI
             LayoutElement.preferredHeight = h;
             return this;
         }
+
+        public UIObject MinSize(float w, float h)
+        {
+            if (!LayoutElement)
+                gameObject.AddComponent<LayoutElement>();
+            LayoutElement.minWidth = w;
+            LayoutElement.minHeight = h;
+            return this;
+        }
         
         public UIObject BlocksRaycasts(bool state)
         {
