@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
@@ -13,6 +15,9 @@ namespace KodeUI
 		Image background;
 		TMP_Dropdown dropdown;
 		ScrollView scrollView;
+
+		const BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+		static FieldInfo m_Value = typeof(TMP_Dropdown).GetField ("m_Value", bindingFlags);
 
 		public class TextItem : UIToggle
 		{
@@ -123,6 +128,14 @@ namespace KodeUI
 		public UIDropdown OnValueChanged (UnityAction<int> action)
 		{
 			dropdown.onValueChanged.AddListener(action);
+			return this;
+		}
+
+		public UIDropdown SetValueWithoutNotify (int value)
+		{
+			value = Mathf.Clamp(value, 0, dropdown.options.Count - 1);
+			m_Value.SetValue (dropdown, value);
+			dropdown.RefreshShownValue ();
 			return this;
 		}
 	}
