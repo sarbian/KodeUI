@@ -119,5 +119,11 @@ namespace KodeUI
 			dropdown.options = options;
 			return this;
 		}
+
+		public UIDropdown OnValueChanged (UnityAction<int> action)
+		{
+			dropdown.onValueChanged.AddListener(action);
+			return this;
+		}
 	}
 }
