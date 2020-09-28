@@ -12,6 +12,12 @@ namespace KodeUI
 		UIText childText;
 		UIText childPlaceholder;
 
+		public bool interactable
+		{
+			get { return inputField.interactable; }
+			set { inputField.interactable = value; }
+		}
+
 		public string text 
 		{
 			get { return inputField.text; }

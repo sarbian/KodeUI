@@ -12,6 +12,12 @@ namespace KodeUI
 
         public UIImage CheckMark { get { return checkMark; } }
 
+        public bool interactable
+        {
+            get { return toggle.interactable; }
+            set { toggle.interactable = value; }
+        }
+
         public bool isOn
         {
             get { return toggle.isOn; }

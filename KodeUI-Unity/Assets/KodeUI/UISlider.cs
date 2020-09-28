@@ -14,6 +14,12 @@ namespace KodeUI
 		UIImage handle;
 		UIEmpty handleArea;
 
+		public bool interactable
+		{
+			get { return slider.interactable; }
+			set { slider.interactable = value; }
+		}
+
 		public UIImage Background { get { return background; } }
 		public UIImage Fill { get { return fill; } }
 		public UIImage Handle { get { return handle; } }

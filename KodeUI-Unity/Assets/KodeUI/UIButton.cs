@@ -12,6 +12,12 @@ namespace KodeUI
         private Button button;
         private Image image;
 
+        public bool interactable
+        {
+            get { return button.interactable; }
+            set { button.interactable = value; }
+        }
+
         public override void CreateUI()
         {
             Horizontal().ChildForceExpand(false, false).ControlChildSize(true, true).Pivot(PivotPresets.TopLeft);

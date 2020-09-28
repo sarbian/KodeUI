@@ -11,6 +11,12 @@ namespace KodeUI
 		UIImage handle;
 		public Scrollbar scrollbar { get; private set; }
 
+		public bool interactable
+		{
+			get { return scrollbar.interactable; }
+			set { scrollbar.interactable = value; }
+		}
+
 		public override void CreateUI()
 		{
 			image = gameObject.AddComponent<Image>();

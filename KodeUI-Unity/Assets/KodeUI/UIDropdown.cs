@@ -38,6 +38,12 @@ namespace KodeUI
 
 		public Layout Content { get { return scrollView.Content; } }
 
+		public bool interactable
+		{
+			get { return dropdown.interactable; }
+			set { dropdown.interactable = value; }
+		}
+
 		UIImage arrow;
 		public UIImage Arrow
 		{
