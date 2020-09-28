@@ -34,10 +34,10 @@ namespace KodeUI
         {
             Padding(3);
 
-			button.transition = style.transition ?? Selectable.Transition.ColorTint;
-			if (style.stateSprites.HasValue) {
-				button.spriteState = style.stateSprites.Value;
-			}
+            button.transition = style.transition ?? Selectable.Transition.ColorTint;
+            if (style.stateSprites.HasValue) {
+                button.spriteState = style.stateSprites.Value;
+            }
             button.colors = style.stateColors ?? ColorBlock.defaultColorBlock;
 
             image.sprite = style.sprite;
