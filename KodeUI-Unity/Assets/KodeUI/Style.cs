@@ -99,7 +99,7 @@ namespace KodeUI
 		{
 			stateColors = ColorBlock.defaultColorBlock;
 			color = Color.white;
-			sprite = SpriteLoader.GetSprite ("KodeUI/Default/standard");
+			// sprite can default to null
 			// stateSprites can default to null
 			transition = Selectable.Transition.ColorTint;
 		}
