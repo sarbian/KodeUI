@@ -36,7 +36,7 @@ namespace KodeUI
             toggle.graphic = checkMark.image;
         }
 
-        public UIToggle OnClick(UnityAction<bool> action)
+        public UIToggle OnValueChanged(UnityAction<bool> action)
         {
             toggle.onValueChanged.AddListener(action);
             return this;

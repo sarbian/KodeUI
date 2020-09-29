@@ -61,7 +61,7 @@ public class UITester : LoadingSystem
                 .Add<UIText>(out text).Text("N/A").Alignment(TextAlignmentOptions.TopLeft).FlexibleLayout(true,false).Finish()
             .Finish()
             
-            .Add<UIToggle>().OnClick(Action).FlexibleLayout(false,true).PreferredSize(15,15).Finish()
+            .Add<UIToggle>().OnValueChanged(Action).FlexibleLayout(false,true).PreferredSize(15,15).Finish()
         .Finish();
 
         
