@@ -28,8 +28,6 @@ namespace KodeUI
 		public bool doFlexibleWidth { get { return m_doFlexibleWidth; } set { m_doFlexibleWidth = value; } }
 		public bool doFlexibleHeight { get { return m_doFlexibleHeight; } set { m_doFlexibleHeight = value; } }
 
-		List<RectTransform> m_RectChildren;
-
 		/*float _minWidth;
 		float _preferredWidth;
 		float _flexibleWidth;
