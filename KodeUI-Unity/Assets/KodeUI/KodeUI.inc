@@ -18,6 +18,7 @@ KodeUI = \
 	KodeUI/Style.cs \
 	KodeUI/Titlebar.cs \
 	KodeUI/Touchable.cs \
+	KodeUI/TreeView.cs \
 	KodeUI/UIButton.cs \
 	KodeUI/UIDropdown.cs \
 	KodeUI/UIEmpty.cs \

@@ -129,7 +129,6 @@ namespace KodeUI
             }
         }
 
-        Image background;
         List<TreeItem> items;
         TreeViewEvent onStateChanged = new TreeViewEvent();
 
