@@ -36,18 +36,21 @@ namespace KodeUI
         {
             backGround.sprite = sprite;
             backGround.type = type;
+            style.sprite = sprite;
             return this;
         }
 
         public LayoutPanel Background(string image)
         {
             ImageLoader.SetupImage(backGround,image);
+            style.sprite = backGround.sprite;
             return this;
         }
 
         public LayoutPanel BackgroundColor(Color color)
         {
             backGround.color = color;
+            style.color = color;
             return this;
         }
 
