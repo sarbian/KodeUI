@@ -1,4 +1,5 @@
-﻿using KodeUI;
+﻿using System.Collections.Generic;
+using KodeUI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,11 +32,64 @@ public class UITester : LoadingSystem
         ready = true;
     }
 
+    class TestTreeItem {
+        string name;
+        TestTreeItem []children;
+
+        public int Count
+        {
+            get {
+                if (children != null) {
+                    return children.Length;
+                }
+                return 0;
+            }
+        }
+        public TestTreeItem this[int index]
+        {
+            get { return children[index]; }
+        }
+        public string Name { get { return name; } }
+
+        public TestTreeItem(string name, TestTreeItem []children = null)
+        {
+            this.name = name;
+            this.children = children;
+        }
+    }
+
+    static TestTreeItem [] testTreeItems = {
+        new TestTreeItem ("item 1", new TestTreeItem [] {
+            new TestTreeItem ("item A"),
+            new TestTreeItem ("item B"),
+            new TestTreeItem ("item C"),
+        }),
+        new TestTreeItem ("item 2"),
+        new TestTreeItem ("item 3", new TestTreeItem [] {
+            new TestTreeItem ("item E"),
+            new TestTreeItem ("item F"),
+            new TestTreeItem ("item G"),
+            new TestTreeItem ("item H"),
+        }),
+        new TestTreeItem ("item 4", new TestTreeItem [] {
+            new TestTreeItem ("item I"),
+        }),
+        new TestTreeItem ("item 5"),
+    };
+
+    List<TreeView.TreeItem> treeItems;
+    TreeView treeView;
+
     // Reminder since I keep forgetting: The UI must be built while in play mode for the buttons to work
     public void BuildUI()
     {
         if (testUI)
             return;
+
+        treeItems = new List<TreeView.TreeItem> ();
+        foreach (var item in testTreeItems) {
+            treeItems.Add (new TreeView.TreeItem (item, i => (i as TestTreeItem).Name, i => (i as TestTreeItem).Count != 0, 0));
+        }
 
         Window basePanel = UIKit.CreateUI<Window>(appCanvas.transform as RectTransform, "testUI");
         testUI = basePanel.gameObject;
@@ -62,6 +116,7 @@ public class UITester : LoadingSystem
             .Finish()
             
             .Add<UIToggle>().OnValueChanged(Action).FlexibleLayout(false,true).PreferredSize(15,15).Finish()
+            .Add<TreeView>(out treeView).Items(treeItems).OnStateChanged(OnTreeStateChanged).PreferredSize(-1,150).FlexibleLayout(true, true).Finish()
         .Finish();
 
         
@@ -98,6 +153,22 @@ public class UITester : LoadingSystem
     private void Action(bool arg0)
     {
         Debug.Log("Now " + arg0);
+    }
+
+    private void OnTreeStateChanged(int index, bool open)
+    {
+        var item = treeItems[index].Object as TestTreeItem;
+        if (open) {
+            var newItems = new List<TreeView.TreeItem> ();
+            int level = treeItems[index].Level + 1;
+            for (int i = 0; i < item.Count; i++) {
+                newItems.Add (new TreeView.TreeItem (item[i], it => (it as TestTreeItem).Name, it => (it as TestTreeItem).Count != 0, level));
+            }
+            treeItems.InsertRange(index + 1, newItems);
+        } else {
+            treeItems.RemoveRange(index + 1, item.Count);
+        }
+        treeView.Items(treeItems);
     }
 
 }

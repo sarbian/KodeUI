@@ -11,6 +11,7 @@ namespace KodeUI
         protected Toggle toggle;
 
         public UIImage CheckMark { get { return checkMark; } }
+        public Image Image { get { return image; } }
 
         public bool interactable
         {
@@ -21,6 +22,7 @@ namespace KodeUI
         public bool isOn
         {
             get { return toggle.isOn; }
+            set { toggle.isOn = value; }
         }
 
         public override void CreateUI()
@@ -29,7 +31,7 @@ namespace KodeUI
             toggle = gameObject.AddComponent<Toggle>();
 
             image = gameObject.AddComponent<Image>();
-            image.type = Image.Type.Sliced;
+            image.type = UnityEngine.UI.Image.Type.Sliced;
             toggle.targetGraphic = image;
 
             Add<UIImage>(out checkMark, "CheckMark").Anchor(AnchorPresets.StretchAll).Pivot(PivotPresets.MiddleCenter).SizeDelta(0, 0).Finish();
@@ -53,6 +55,12 @@ namespace KodeUI
                 toggle.spriteState = style.stateSprites.Value;
             }
 
+        }
+
+        public UIToggle SetIsOnWithoutNotify(bool on)
+        {
+            toggle.SetIsOnWithoutNotify(on);
+            return this;
         }
     }
 }
