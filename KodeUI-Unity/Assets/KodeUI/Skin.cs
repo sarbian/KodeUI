@@ -70,6 +70,17 @@ namespace KodeUI
 
 		public static Dictionary<string, Skin> skins { get; private set; }
 
+		public static Skin GetSkin(string name)
+		{
+			if (String.IsNullOrEmpty (name)) {
+				return null;
+			}
+			Skin s;
+			skins.TryGetValue (name, out s);
+			Debug.Log ($"[Skin] GetSkin {name} {s}");
+			return s;
+		}
+
 		public static IEnumerator LoadSkins()
 		{
 			skins = new Dictionary<string, Skin> ();

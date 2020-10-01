@@ -116,7 +116,12 @@ namespace KodeUI
         public abstract void Style();
 
         public Style style { get; private set; }
-        public Skin skin { get; set; }
+        private Skin _skin;
+        public Skin skin
+        {
+            get { return _skin; }
+            set { _skin = value; SetupStyle(); }
+        }
 
         public T Add<T>(string id = null) where T : UIObject
         {
@@ -140,6 +145,18 @@ namespace KodeUI
             string stylePath = GetStylePath ();
             style = skin[stylePath];
             //Debug.Log($"[UIObject] SetupStyle {stylePath} {skin.ContainsStyle(stylePath)}");
+        }
+
+        public UIObject SetSkin(string skinName)
+        {
+            skin = Skin.GetSkin(skinName);
+            return this;
+        }
+
+        public UIObject SetSkin(Skin skin)
+        {
+            this.skin = skin;
+            return this;
         }
 
         protected UIObject GetParent()
