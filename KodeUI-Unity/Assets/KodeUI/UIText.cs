@@ -63,5 +63,16 @@ namespace KodeUI
             return this;
         }
 
+        public UIText Margin (Vector4 margin)
+        {
+            tmpText.margin = margin;
+            return this;
+        }
+
+        public UIText Margin (float left, float right, float top, float bottom)
+        {
+            tmpText.margin = new Vector4 (left, right, top, bottom);
+            return this;
+        }
     }
 }
