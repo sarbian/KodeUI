@@ -12,8 +12,20 @@ namespace KodeUI
 
 	public class UIDropdown : UIObject
 	{
+		class KodeUI_Dropdown : TMP_Dropdown
+		{
+			protected override GameObject CreateDropdownList(GameObject template)
+			{
+				var dropdown = base.CreateDropdownList(template);
+				var canvas = dropdown.GetComponent<Canvas> ();
+				var rootCanvas = gameObject.GetComponentInParent<Canvas>().rootCanvas;
+				Debug.Log($"[KodeUI_Dropdown] CreateDropdownList {canvas} {rootCanvas}");
+				canvas.sortingLayerID = rootCanvas.sortingLayerID;
+				return dropdown;
+			}
+		}
 		Image background;
-		TMP_Dropdown dropdown;
+		KodeUI_Dropdown dropdown;
 		ScrollView scrollView;
 
 		const BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
@@ -86,7 +98,7 @@ namespace KodeUI
 			background.color = UnityEngine.Color.white;
 			background.type = Image.Type.Sliced;
 
-			dropdown = gameObject.AddComponent<TMP_Dropdown>();
+			dropdown = gameObject.AddComponent<KodeUI_Dropdown>();
 
 			Add<UIText> (out caption, "Label").Anchor(AnchorPresets.StretchAll).SizeDelta (0, 0).Finish();
 			Add<UIImage> (out arrow, "Arrow").Anchor(AnchorPresets.VertStretchRight).X(-15).Y(0).Pivot(PivotPresets.MiddleCenter).SizeDelta(20,0).Finish();
