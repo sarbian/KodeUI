@@ -12,7 +12,8 @@ namespace KodeUI
 
     public class TreeView : ScrollView
     {
-        public class TreeViewEvent : UnityEvent<int, bool> { }
+        public class TreeViewToggleEvent : UnityEvent<int, bool> { }
+        public class TreeViewClickedEvent : UnityEvent<int> { }
 
         public class TreeItem
         {
@@ -54,7 +55,8 @@ namespace KodeUI
             UIText text;
             TreeItem treeItem;
             int index;
-            TreeViewEvent onStateChanged = new TreeViewEvent();
+            TreeViewToggleEvent onStateChanged = new TreeViewToggleEvent();
+            TreeViewClickedEvent onClick = new TreeViewClickedEvent();
 
             public UIText Text { get { return text; } }
             public int Index { get { return index; } }
@@ -122,15 +124,23 @@ namespace KodeUI
                 return this;
             }
 
+            public TreeItemView OnClick(UnityAction<int> action)
+            {
+                onClick.AddListener(action);
+                return this;
+            }
+
             public void OnPointerClick(PointerEventData eventData)
             {
                 if (eventData.button == PointerEventData.InputButton.Left) {
+                    onClick.Invoke(index);
                 }
             }
         }
 
         List<TreeItem> items;
-        TreeViewEvent onStateChanged = new TreeViewEvent();
+        TreeViewToggleEvent onStateChanged = new TreeViewToggleEvent();
+        TreeViewClickedEvent onClick = new TreeViewClickedEvent();
 
         public override void CreateUI()
         {
@@ -174,7 +184,6 @@ namespace KodeUI
             }
             while (childIndex < childCount) {
                 var go = contentRect.GetChild(childIndex++).gameObject;
-                Debug.Log($"[TreeView] deleting {go.name} {go.GetComponent<TreeItemView>().Text.tmpText.text}");
                 Destroy(go);
             }
             while (itemIndex < itemCount) {
@@ -182,6 +191,7 @@ namespace KodeUI
                     .Add<TreeItemView>()
                     .Item(items[itemIndex], itemIndex)
                     .OnStateChanged((int i, bool o) => onStateChanged.Invoke(i, o))
+                    .OnClick((int i) => onClick.Invoke(i))
                     .FlexibleLayout(true, false)
                     .Finish();
                 ++itemIndex;
@@ -191,6 +201,12 @@ namespace KodeUI
         public TreeView OnStateChanged(UnityAction<int, bool> action)
         {
             onStateChanged.AddListener(action);
+            return this;
+        }
+
+        public TreeView OnClick(UnityAction<int> action)
+        {
+            onClick.AddListener(action);
             return this;
         }
 

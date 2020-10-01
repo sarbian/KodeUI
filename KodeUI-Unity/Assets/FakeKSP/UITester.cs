@@ -116,7 +116,7 @@ public class UITester : LoadingSystem
             .Finish()
             
             .Add<UIToggle>().OnValueChanged(Action).FlexibleLayout(false,true).PreferredSize(15,15).Finish()
-            .Add<TreeView>(out treeView).Items(treeItems).OnStateChanged(OnTreeStateChanged).PreferredSize(-1,150).FlexibleLayout(true, true).Finish()
+            .Add<TreeView>(out treeView).Items(treeItems).OnClick(OnTreeClicked).OnStateChanged(OnTreeStateChanged).PreferredSize(-1,150).FlexibleLayout(true, true).Finish()
         .Finish();
 
         
@@ -153,6 +153,12 @@ public class UITester : LoadingSystem
     private void Action(bool arg0)
     {
         Debug.Log("Now " + arg0);
+    }
+
+    private void OnTreeClicked(int index)
+    {
+        var item = treeItems[index].Object as TestTreeItem;
+        Debug.Log("Tree item: " + item.Name);
     }
 
     private void OnTreeStateChanged(int index, bool open)
