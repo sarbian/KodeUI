@@ -109,9 +109,13 @@ namespace KodeUI
                 int level = item.Level;
                 text.Text (item.Text);
                 Vector2 size = text.tmpText.GetPreferredValues ();
-                float x = level * size.y + size.y;
-                text.SizeDelta(-x, 0).X(x);
 
+				float x = level * size.y;
+                float text_x = x + size.y;
+
+                text.SizeDelta(-text_x, 0).X(text_x);
+
+				toggle.X(x);
                 toggle.CheckMark.image.enabled = item.IsOpen;
                 toggle.Image.enabled = item.CanOpen;
                 toggle.SetIsOnWithoutNotify(item.IsOpen);
