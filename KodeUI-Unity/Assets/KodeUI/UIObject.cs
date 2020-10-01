@@ -110,6 +110,9 @@ namespace KodeUI
         {
             return _canvasGroup != null;
         }
+
+        private ToggleGroup _toggleGroup;
+        public ToggleGroup toggleGroup { get { return _toggleGroup; } }
     
         public abstract void CreateUI();
 
@@ -388,6 +391,20 @@ namespace KodeUI
                 gameObject.AddComponent<LayoutElement>();
             LayoutElement.minWidth = w;
             LayoutElement.minHeight = h;
+            return this;
+        }
+
+        public UIObject ToggleGroup(out ToggleGroup toggleGroup, bool allowOff = false)
+        {
+            ToggleGroup(allowOff);
+            toggleGroup = _toggleGroup;
+            return this;
+        }
+
+        public UIObject ToggleGroup(bool allowOff = false)
+        {
+            _toggleGroup = gameObject.AddComponent<ToggleGroup>();
+            _toggleGroup.allowSwitchOff = allowOff;
             return this;
         }
         

@@ -62,5 +62,11 @@ namespace KodeUI
             toggle.SetIsOnWithoutNotify(on);
             return this;
         }
+
+		public UIToggle Group(ToggleGroup group)
+		{
+			toggle.group = group;
+			return this;
+		}
     }
 }
