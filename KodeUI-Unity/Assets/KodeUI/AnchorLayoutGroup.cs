@@ -22,11 +22,17 @@ namespace KodeUI
 		[SerializeField] bool m_doFlexibleHeight = false;
 
 		public bool doMinWidth { get { return m_doMinWidth; } set { m_doMinWidth = value; } }
+		ILayoutElement m_minWidthSource;
 		public bool doMinHeight { get { return m_doMinHeight; } set { m_doMinHeight = value; } }
+		ILayoutElement m_minHeightSource;
 		public bool doPreferredWidth { get { return m_doPreferredWidth; } set { m_doPreferredWidth = value; } }
+		ILayoutElement m_preferredWidthSource;
 		public bool doPreferredHeight { get { return m_doPreferredHeight; } set { m_doPreferredHeight = value; } }
+		ILayoutElement m_preferredHeightSource;
 		public bool doFlexibleWidth { get { return m_doFlexibleWidth; } set { m_doFlexibleWidth = value; } }
+		ILayoutElement m_flexibleWidthSource;
 		public bool doFlexibleHeight { get { return m_doFlexibleHeight; } set { m_doFlexibleHeight = value; } }
+		ILayoutElement m_flexibleHeightSource;
 
 		/*float _minWidth;
 		float _preferredWidth;
@@ -37,46 +43,55 @@ namespace KodeUI
 		int _layoutPriority;*/
 
 		//public override void CalculateLayoutInputHorizontal() { }
-		public override void CalculateLayoutInputVertical() { }
-
-		float GetMaxProperty (System.Func<ILayoutElement, float> property)
+		public override void CalculateLayoutInputVertical()
 		{
+			CalcAlongAxis(1, false);
+		}
+
+		float GetMaxProperty (System.Func<ILayoutElement, float> property, out ILayoutElement source)
+		{
+			source = null;
 			float maxVal = -1; // negative considered to be off
 			for (int i = 0; i < rectChildren.Count; i++) {
+				ILayoutElement newSource;
 				var rect = rectChildren[i];
-				maxVal = LayoutUtility.GetLayoutProperty (rect, property, maxVal);
+				float newVal = LayoutUtility.GetLayoutProperty (rect, property, -1, out newSource);
+				if (newVal > maxVal) {
+					maxVal = newVal;
+					source = newSource;
+				}
 			}
 			return maxVal;
 		}
 
 		public override float minWidth
 		{
-			get { return m_doMinWidth ? GetMaxProperty (e => e.minWidth) : 0; }
+			get { return m_doMinWidth ? GetMaxProperty (e => e.minWidth, out m_minWidthSource) : -1; }
 		}
 
 		public override float preferredWidth
 		{
-			get { return m_doPreferredWidth ? GetMaxProperty (e => e.preferredWidth) : 0; }
+			get { return m_doPreferredWidth ? GetMaxProperty (e => e.preferredWidth, out m_preferredWidthSource) : -1; }
 		}
 
 		public override float flexibleWidth
 		{
-			get { return m_doFlexibleWidth ? GetMaxProperty (e => e.flexibleWidth) : 0; }
+			get { return m_doFlexibleWidth ? GetMaxProperty (e => e.flexibleWidth, out m_flexibleWidthSource) : -1; }
 		}
 
 		public override float minHeight
 		{
-			get { return m_doMinHeight ? GetMaxProperty (e => e.minHeight) : 0; }
+			get { return m_doMinHeight ? GetMaxProperty (e => e.minHeight, out m_minHeightSource) : -1; }
 		}
 
 		public override float preferredHeight
 		{
-			get { return m_doPreferredHeight ? GetMaxProperty (e => e.preferredHeight) : 0; }
+			get { return m_doPreferredHeight ? GetMaxProperty (e => e.preferredHeight, out m_preferredHeightSource) : -1; }
 		}
 
 		public override float flexibleHeight
 		{
-			get { return m_doFlexibleHeight ? GetMaxProperty (e => e.flexibleHeight) : 0; }
+			get { return m_doFlexibleHeight ? GetMaxProperty (e => e.flexibleHeight, out m_flexibleHeightSource) : -1; }
 		}
 
 		public override void SetLayoutHorizontal() { }
