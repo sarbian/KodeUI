@@ -27,6 +27,22 @@ namespace KodeUI
             }
         }
 
+        LayoutDebug layoutDebug;
+        public LayoutDebug LayoutDebug
+        {
+            get {
+                if (layoutDebug == null) {
+                    layoutDebug = GetComponent<LayoutDebug> ();
+                }
+                return layoutDebug;
+            }
+        }
+        public UIObject DebugLayout()
+        {
+            gameObject.AddComponent<LayoutDebug> ();
+            return this;
+        }
+
         private LayoutElement _layoutElement;
         public LayoutElement LayoutElement
         {

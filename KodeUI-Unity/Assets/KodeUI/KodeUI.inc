@@ -9,6 +9,7 @@ KodeUI = \
 	KodeUI/ImageLoader.cs \
 	KodeUI/Layout.cs \
 	KodeUI/LayoutAnchor.cs \
+	KodeUI/LayoutDebug.cs \
 	KodeUI/LayoutPanel.cs \
 	KodeUI/Loader.cs \
 	KodeUI/RectTransformExtensions.cs \
