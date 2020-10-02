@@ -19,7 +19,6 @@ namespace KodeUI
 				var dropdown = base.CreateDropdownList(template);
 				var canvas = dropdown.GetComponent<Canvas> ();
 				var rootCanvas = gameObject.GetComponentInParent<Canvas>().rootCanvas;
-				Debug.Log($"[KodeUI_Dropdown] CreateDropdownList {canvas} {rootCanvas}");
 				canvas.sortingLayerID = rootCanvas.sortingLayerID;
 				return dropdown;
 			}
