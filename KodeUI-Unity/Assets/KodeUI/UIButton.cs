@@ -47,7 +47,7 @@ namespace KodeUI
         public UIButton Text(string text)
         {
             if (childText == null) {
-                Add<UIText>(out childText, "ButtonText").Text(text).Alignment(TextAlignmentOptions.Center).Anchor(AnchorPresets.StretchAll).Width(0).Height(0).Finish();
+                Add<UIText>(out childText, "ButtonText").Text(text).Alignment(TextAlignmentOptions.Center).Anchor(AnchorPresets.StretchAll).SizeDelta(0,0).FlexibleLayout(true, true).Finish();
             } else {
                 childText.Text(text);
             }
