@@ -10,7 +10,7 @@ namespace KodeUI
 {
 	using OptionData = TMP_Dropdown.OptionData;
 
-	public class UIDropdown : UIObject
+	public class UIDropdown : UIObject, ILayoutElement
 	{
 		class KodeUI_Dropdown : TMP_Dropdown
 		{
@@ -91,6 +91,37 @@ namespace KodeUI
 				}
 			}
 		}
+
+		Vector2 minSize;
+		Vector2 preferredSize;
+
+		public void CalculateLayoutInputHorizontal()
+		{
+			float cm = LayoutUtility.GetMinSize(caption.rectTransform, 0);
+			float am = LayoutUtility.GetMinSize(arrow.rectTransform, 0);
+			float cp = LayoutUtility.GetPreferredSize(caption.rectTransform, 0);
+			float ap = LayoutUtility.GetPreferredSize(arrow.rectTransform, 0);
+			minSize.x = cm + am;
+			preferredSize.x = Mathf.Max(cp, ap);
+		}
+
+		public void CalculateLayoutInputVertical()
+		{
+			float cm = LayoutUtility.GetMinSize(caption.rectTransform, 1);
+			float am = LayoutUtility.GetMinSize(arrow.rectTransform, 1);
+			float cp = LayoutUtility.GetPreferredSize(caption.rectTransform, 1);
+			float ap = LayoutUtility.GetPreferredSize(arrow.rectTransform, 1);
+			minSize.y = cm + am;
+			preferredSize.y = Mathf.Max(cp, ap);
+		}
+
+		public int layoutPriority { get { return 0; } }
+		public float minWidth { get { return minSize.x; } }
+		public float preferredWidth { get { return preferredSize.x; } }
+		public float flexibleWidth  { get { return -1; } }
+		public float minHeight { get { return minSize.y; } }
+		public float preferredHeight { get { return preferredSize.y; } }
+		public float flexibleHeight  { get { return -1; } }
 
         public override void CreateUI()
 		{
