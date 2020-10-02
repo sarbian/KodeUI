@@ -131,8 +131,8 @@ namespace KodeUI
 
 			dropdown = gameObject.AddComponent<KodeUI_Dropdown>();
 
-			Add<UIText> (out caption, "Label").Anchor(AnchorPresets.StretchAll).SizeDelta (0, 0).Finish();
-			Add<UIImage> (out arrow, "Arrow").Anchor(AnchorPresets.VertStretchRight).X(-15).Y(0).Pivot(PivotPresets.MiddleCenter).SizeDelta(20,0).Finish();
+			Add<UIText> (out caption, "Label").Alignment (TextAlignmentOptions.Left).Margin (5, 5, 6, 6).Anchor(AnchorPresets.StretchAll).SizeDelta (0, 0).Finish();
+			Add<UIImage> (out arrow, "Arrow").Anchor(AnchorPresets.VertStretchRight).X(-15).Y(0).PreferredHeight(0).Pivot(PivotPresets.MiddleCenter).SizeDelta(20,0).Finish();
 
 			UIScrollbar scrollbar;
 			Add<ScrollView>(out scrollView, "Template").Horizontal(false).Vertical(true).Anchor(AnchorPresets.HorStretchBottom).Pivot(PivotPresets.TopCenter).SizeDelta(0, 150)
