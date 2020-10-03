@@ -5,12 +5,17 @@ using UnityEngine.UI;
 
 namespace KodeUI
 {
-    public class UIButton : Layout
+    public class UIButton : LayoutAnchor
     {
+        private Layout content;
         private UIText childText;
         private UIImage childImage;
         private Button button;
         private Image image;
+
+        public Layout Content { get { return content; } }
+        public UIText ChildText { get { return childText; } }
+        public UIImage ChildImage { get { return childImage; } }
 
         public bool interactable
         {
@@ -20,7 +25,18 @@ namespace KodeUI
 
         public override void CreateUI()
         {
-            Horizontal().ChildForceExpand(false, false).ControlChildSize(true, true).Pivot(PivotPresets.TopLeft);
+            base.CreateUI();
+            this.DoPreferredWidth(true)
+                .DoPreferredHeight(true)
+                .DoMinWidth(true)
+                .DoMinHeight(true)
+                .Add<Layout> (out content)
+                    .Horizontal()
+                    .ChildForceExpand(false, false)
+                    .ControlChildSize(true, true)
+                    .Anchor(AnchorPresets.StretchAll)
+                    .SizeDelta(0, 0)
+                    .Finish();
 
             image = gameObject.AddComponent<Image>();
             image.type = UnityEngine.UI.Image.Type.Sliced;
@@ -32,7 +48,7 @@ namespace KodeUI
 
         public override void Style()
         {
-            Padding(3);
+            content.Padding(3);
 
             button.transition = style.transition ?? Selectable.Transition.ColorTint;
             if (style.stateSprites.HasValue) {
@@ -47,7 +63,7 @@ namespace KodeUI
         public UIButton Text(string text)
         {
             if (childText == null) {
-                Add<UIText>(out childText, "ButtonText").Text(text).Alignment(TextAlignmentOptions.Center).Anchor(AnchorPresets.StretchAll).SizeDelta(0,0).FlexibleLayout(true, true).Finish();
+                content.Add<UIText>(out childText, "ButtonText").Text(text).Alignment(TextAlignmentOptions.Center).Anchor(AnchorPresets.StretchAll).SizeDelta(0,0).FlexibleLayout(true, true).Finish();
             } else {
                 childText.Text(text);
             }
@@ -57,7 +73,7 @@ namespace KodeUI
         public UIButton Image(Sprite sprite)
         {
             if (childImage == null) {
-                Add<UIImage>(out childImage, "ButtomImage").Image(sprite).Anchor(AnchorPresets.StretchAll).Width(0).Height(0).Finish();
+                content.Add<UIImage>(out childImage, "ButtomImage").Image(sprite).Anchor(AnchorPresets.StretchAll).Width(0).Height(0).Finish();
             } else {
                 childImage.Image(sprite);
             }
