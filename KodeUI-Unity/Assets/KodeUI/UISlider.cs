@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 namespace KodeUI
 {
@@ -70,6 +71,12 @@ namespace KodeUI
 				fillArea.X(0).WidthDelta(0);
 				fill.WidthDelta(0);
 			}
+			return this;
+		}
+
+		public UISlider OnValueChanged (UnityAction <float> action)
+		{
+			slider.onValueChanged.AddListener (action);
 			return this;
 		}
 	}
