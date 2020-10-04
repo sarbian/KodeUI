@@ -11,11 +11,11 @@ namespace KodeUI
         {
             Pivot(PivotPresets.TopLeft);
             tmpText = gameObject.AddComponent<TextMeshProUGUI>();
+            tmpText.fontSize = 18;
         }
 
         public override void Style()
         {
-            tmpText.fontSize = 18;
             tmpText.color = style.color ?? UnityEngine.Color.white;
         }
 
