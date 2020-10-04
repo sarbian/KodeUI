@@ -45,6 +45,7 @@ namespace KodeUI
                 titleText.Text (title);
             } else {
                 Add<UIText>(out titleText, "TitleText").Text(title).Alignment(TextAlignmentOptions.Top).Anchor(AnchorPresets.StretchAll).SizeDelta(0, 0).FlexibleLayout(true, false).Pivot(PivotPresets.TopCenter).BlocksRaycasts(false).Finish();
+				titleText.tmpText.raycastTarget = false;
             }
             return this;
         }
