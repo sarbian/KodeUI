@@ -17,18 +17,20 @@ namespace KodeUI
 
 		public void CalculateLayoutInputHorizontal()
 		{
+			var taRect = textArea.rectTransform;
 			float cm = LayoutUtility.GetMinSize(childText.rectTransform, 0);
 			float cp = LayoutUtility.GetPreferredSize(childText.rectTransform, 0);
-			minSize.x = cm;
-			preferredSize.x = cp;
+			minSize.x = cm + taRect.offsetMin.x - taRect.offsetMax.x;
+			preferredSize.x = cp + taRect.offsetMin.x - taRect.offsetMax.x;
 		}
 
 		public void CalculateLayoutInputVertical()
 		{
+			var taRect = textArea.rectTransform;
 			float cm = LayoutUtility.GetMinSize(childText.rectTransform, 1);
 			float cp = LayoutUtility.GetPreferredSize(childText.rectTransform, 1);
-			minSize.y = cm;
-			preferredSize.y = cp;
+			minSize.y = cm + taRect.offsetMin.y - taRect.offsetMax.y;
+			preferredSize.y = cp + taRect.offsetMin.y - taRect.offsetMax.y;
 		}
 
 		public int layoutPriority { get { return 0; } }
