@@ -62,7 +62,7 @@ namespace KodeUI
 
 		public UISlider ShowHandle(bool enabled)
 		{
-			handle.gameObject.SetActive (enabled);
+			handle.SetActive (enabled);
 			if (enabled) {
 				float width = handle.rectTransform.sizeDelta.x;
 				fillArea.X(-width / 4).WidthDelta(-width);

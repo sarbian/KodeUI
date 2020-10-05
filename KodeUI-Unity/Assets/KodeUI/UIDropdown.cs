@@ -144,7 +144,7 @@ namespace KodeUI
 				.Add<TextItem>(out item, "Item").Finish()
 			.SizeDelta(0, item.rectTransform.sizeDelta.y).Finish();
 
-			scrollView.gameObject.SetActive(false);
+			scrollView.SetActive(false);
 
 			dropdown.template = scrollView.rectTransform;
 			dropdown.itemText = item.Text.tmpText;

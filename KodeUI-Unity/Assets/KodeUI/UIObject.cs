@@ -459,5 +459,11 @@ namespace KodeUI
             style.sprite = sprite;
             return this;
         }
+
+		public UIObject SetActive (bool active)
+		{
+			gameObject.SetActive (active);
+			return this;
+		}
     }
 }
