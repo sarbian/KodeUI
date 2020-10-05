@@ -7,7 +7,8 @@ namespace KodeUI
 {
 	public class UIInputField : UIObject, ILayoutElement
 	{
-		private TMP_InputField inputField;
+		Image background;
+		TMP_InputField inputField;
 		UIRectMask textArea;
 		UIText childText;
 		UIText childPlaceholder;
@@ -83,6 +84,10 @@ namespace KodeUI
 			childText.tmpText.extraPadding = true;
 			childText.tmpText.richText = true;
 
+			background = gameObject.AddComponent<Image>();
+			background.color = UnityEngine.Color.white;
+			background.type = Image.Type.Sliced;
+
 			inputField = gameObject.AddComponent<TMP_InputField>();
 			inputField.textViewport = textArea.rectTransform;
 			inputField.textComponent = childText.tmpText;
@@ -96,6 +101,8 @@ namespace KodeUI
 
 		public override void Style()
 		{
+			background.sprite = style.sprite;
+			background.color = style.color ?? UnityEngine.Color.white;
 		}
 
 		public UIInputField CaretBlinkRate (float rate)
