@@ -138,6 +138,12 @@ namespace KodeUI
 			return this;
 		}
 
+		public UIInputField OnFocusGained (UnityAction<string> evt)
+		{
+			inputField.onSelect.AddListener(evt);
+			return this;
+		}
+
 		public UIInputField OnFocusLost (UnityAction<string> evt)
 		{
 			inputField.onDeselect.AddListener(evt);
