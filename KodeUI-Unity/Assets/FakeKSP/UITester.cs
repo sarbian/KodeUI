@@ -103,7 +103,6 @@ public class UITester : LoadingSystem
             .Anchor(AnchorPresets.MiddleCenter)
             .Pivot(PivotPresets.TopLeft)
             .PreferredWidth(300)
-            .Finish()
             .Add<UIButton>()
                 .Text("Button A")
                 .OnClick(ButtonAction)
