@@ -19,5 +19,33 @@ namespace KodeUI
             child.CreateUI();
             return child;
         }
+
+        public interface IListObject
+        {
+            int Count { get; }
+            RectTransform RectTransform { get; }
+            void Create (int index);
+            void Update (GameObject obj, int index);
+        }
+
+        public static void UpdateListContent(IListObject listObject)
+        {
+            var listRect = listObject.RectTransform;
+            int childCount = listRect.childCount;
+            int childIndex = 0;
+            int itemCount = listObject.Count;
+            int itemIndex = 0;
+
+            while (childIndex < childCount && itemIndex < itemCount) {
+                var go = listRect.GetChild(childIndex++).gameObject;
+                listObject.Update (go, itemIndex++);
+            }
+            while (childIndex < childCount) {
+                UnityEngine.Object.Destroy(listRect.GetChild(childIndex++));
+            }
+            while (itemIndex < itemCount) {
+                listObject.Create (itemIndex++);
+            }
+        }
     }
 }
