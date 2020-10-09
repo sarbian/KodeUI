@@ -41,7 +41,8 @@ namespace KodeUI
                 listObject.Update (go, itemIndex++);
             }
             while (childIndex < childCount) {
-                UnityEngine.Object.Destroy(listRect.GetChild(childIndex++));
+                var go = listRect.GetChild(childIndex++).gameObject;
+                UnityEngine.Object.Destroy(go);
             }
             while (itemIndex < itemCount) {
                 listObject.Create (itemIndex++);
