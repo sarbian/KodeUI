@@ -362,6 +362,14 @@ namespace KodeUI
             return this;
         }
 
+        public UIObject IgnoreLayout (bool ignore)
+        {
+            if (!LayoutElement)
+                gameObject.AddComponent<LayoutElement>();
+            LayoutElement.ignoreLayout = ignore;
+            return this;
+        }
+
         public UIObject FlexibleLayout(bool w, bool h)
         {
             return FlexibleLayout (w ? 1 : -1, h ? 1 : -1);
@@ -460,10 +468,10 @@ namespace KodeUI
             return this;
         }
 
-		public UIObject SetActive (bool active)
-		{
-			gameObject.SetActive (active);
-			return this;
-		}
+        public UIObject SetActive (bool active)
+        {
+            gameObject.SetActive (active);
+            return this;
+        }
     }
 }
