@@ -17,6 +17,7 @@ KodeUI = \
 	KodeUI/Skin.cs \
 	KodeUI/SpriteLoader.cs \
 	KodeUI/Style.cs \
+	KodeUI/TabController.cs \
 	KodeUI/Titlebar.cs \
 	KodeUI/Touchable.cs \
 	KodeUI/TreeView.cs \
