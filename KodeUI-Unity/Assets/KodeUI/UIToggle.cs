@@ -49,7 +49,7 @@ namespace KodeUI
             image.sprite = style.sprite;
             image.color = style.color ?? UnityEngine.Color.white;
 
-            toggle.colors = style.stateColors ?? ColorBlock.defaultColorBlock;;
+            toggle.colors = style.stateColors ?? ColorBlock.defaultColorBlock;
             toggle.transition = style.transition ?? Selectable.Transition.ColorTint;
             if (style.stateSprites.HasValue) {
                 toggle.spriteState = style.stateSprites.Value;
