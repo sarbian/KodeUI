@@ -172,6 +172,12 @@ namespace KodeUI
 			sprite = style.sprite;
 			stateSprites = style.stateSprites;
 			transition = style.transition;
+			type = style.type;
+			fontSize = style.fontSize;
+			alignment = style.alignment;
+			margin = style.margin;
+			padding = style.padding;
+			spacing = style.spacing;
 		}
 
 		public Style Merge (Style overrideStyle)
