@@ -21,8 +21,6 @@ namespace KodeUI
             rectTransform.anchoredPosition = Vector2.zero;
             
             backGround = gameObject.AddComponent<Image>();
-            backGround.type = Image.Type.Sliced;
-            backGround.color = UnityEngine.Color.clear;;
         }
 
         public override void Style()
@@ -30,6 +28,10 @@ namespace KodeUI
             base.Style();
             backGround.sprite = style.sprite;
             backGround.color = style.color ?? UnityEngine.Color.clear;
+            backGround.type = style.type ?? Image.Type.Sliced;
+            if (backGround.sprite == null) {
+                backGround.enabled = false;
+            }
         }
 
         public LayoutPanel Background(Sprite sprite, Image.Type type =  Image.Type.Simple)

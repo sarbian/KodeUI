@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 namespace KodeUI
 {
@@ -14,13 +15,48 @@ namespace KodeUI
 		public Sprite sprite { get; set; }
 		public SpriteState? stateSprites { get; set; }
 		public Selectable.Transition? transition { get; set; }
+		public Image.Type? type { get; set; }
+		public float? fontSize { get; set; }
+		public TextAlignmentOptions? alignment { get; set; }
+		public Vector4? margin { get; set; }
+		public RectOffset padding { get; set; }
+		public float? spacing { get; set; }
+
+		static Vector4? ParseVector4 (string str)
+		{
+			if (String.IsNullOrEmpty (str)) {
+				return null;
+			}
+			Vector4 vec;
+			if (!ParseExtensions.TryParseVector4 (str, out vec)) {
+				return null;
+			}
+			return vec;
+		}
+
+		static RectOffset ParseRectOffset (string str)
+		{
+			if (String.IsNullOrEmpty (str)) {
+				return null;
+			}
+			Vector4 vec;
+			if (!ParseExtensions.TryParseVector4 (str, out vec)) {
+				return null;
+			}
+			return new RectOffset ((int) vec.x, (int) vec.y, (int) vec.z, (int) vec.w);
+		}
 
 		static Color? ParseColor (string str)
 		{
 			if (String.IsNullOrEmpty (str)) {
 				return null;
 			}
-			return ConfigNode.ParseColor (str);
+			Color color;
+			if (!ParseExtensions.TryParseColor (str, out color)
+				&& !ColorUtility.TryParseHtmlString (str, out color)) {
+				return null;
+			}
+			return color;
 		}
 
 		static float? ParseFloat (string str)
@@ -85,6 +121,16 @@ namespace KodeUI
 			return sprites;
 		}
 
+		static TextAlignmentOptions? ParseAlignment (string str)
+		{
+			if (String.IsNullOrEmpty (str)) {
+				return null;
+			}
+			TextAlignmentOptions alignment = TextAlignmentOptions.TopLeft;
+			alignment = KodeUI_Utils.ToEnum<TextAlignmentOptions> (str, alignment);
+			return alignment;
+		}
+
 		static Selectable.Transition? ParseTransition (string str)
 		{
 			if (String.IsNullOrEmpty (str)) {
@@ -92,6 +138,16 @@ namespace KodeUI
 			}
 			Selectable.Transition transition = Selectable.Transition.ColorTint;
 			transition = KodeUI_Utils.ToEnum<Selectable.Transition> (str, transition);
+			return transition;
+		}
+
+		static Image.Type? ParseImageType (string str)
+		{
+			if (String.IsNullOrEmpty (str)) {
+				return null;
+			}
+			Image.Type transition = Image.Type.Simple;//Simple, Sliced, Tiled, Filled
+			transition = KodeUI_Utils.ToEnum<Image.Type> (str, transition);
 			return transition;
 		}
 
@@ -135,6 +191,24 @@ namespace KodeUI
 			{if (overrideStyle.transition is Selectable.Transition t) {
 				transition = t;
 			}}
+			{if (overrideStyle.type is Image.Type t) {
+				type = t;
+			}}
+			{if (overrideStyle.fontSize is float f) {
+				fontSize = f;
+			}}
+			{if (overrideStyle.alignment is TextAlignmentOptions a) {
+				alignment = a;
+			}}
+			{if (overrideStyle.margin is Vector4 v) {
+				margin = v;
+			}}
+			{if (overrideStyle.padding is RectOffset ro) {
+				padding = ro;
+			}}
+			{if (overrideStyle.spacing is float f) {
+				spacing = f;
+			}}
 			return this;
 		}
 
@@ -154,6 +228,24 @@ namespace KodeUI
 			}}
 			{if (ParseTransition (node.GetValue ("transition")) is Selectable.Transition t) {
 				transition = t;
+			}}
+			{if (ParseImageType (node.GetValue ("type")) is Image.Type t) {
+				type = t;
+			}}
+			{if (ParseFloat (node.GetValue ("fontSize")) is float f) {
+				fontSize = f;
+			}}
+			{if (ParseAlignment (node.GetValue ("alignment")) is TextAlignmentOptions a) {
+				alignment = a;
+			}}
+			{if (ParseVector4 (node.GetValue ("margin")) is Vector4 v) {
+				margin = v;
+			}}
+			{if (ParseRectOffset (node.GetValue ("padding")) is RectOffset ro) {
+				padding = ro;
+			}}
+			{if (ParseFloat (node.GetValue ("spacing")) is float f) {
+				spacing = f;
 			}}
 		}
     }

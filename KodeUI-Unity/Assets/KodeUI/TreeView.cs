@@ -64,7 +64,6 @@ namespace KodeUI
             public override void CreateUI()
             {
                 background = gameObject.AddComponent<Image>();
-                background.type = Image.Type.Sliced;
 
                 Add<UIToggle>(out toggle, "ItemToggle")
                     .OnValueChanged(onValueChanged)
@@ -90,6 +89,7 @@ namespace KodeUI
             {
                 background.sprite = style.sprite;
                 background.color = style.color ?? UnityEngine.Color.white;
+                background.type = style.type ?? Image.Type.Sliced;
             }
 
             void onValueChanged (bool open)

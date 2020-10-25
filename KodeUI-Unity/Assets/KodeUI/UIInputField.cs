@@ -85,8 +85,6 @@ namespace KodeUI
 			childText.tmpText.richText = true;
 
 			background = gameObject.AddComponent<Image>();
-			background.color = UnityEngine.Color.white;
-			background.type = Image.Type.Sliced;
 
 			inputField = gameObject.AddComponent<TMP_InputField>();
 			inputField.textViewport = textArea.rectTransform;
@@ -103,6 +101,7 @@ namespace KodeUI
 		{
 			background.sprite = style.sprite;
 			background.color = style.color ?? UnityEngine.Color.white;
+			background.type = style.type ?? Image.Type.Sliced;
 		}
 
 		public UIInputField CaretBlinkRate (float rate)

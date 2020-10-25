@@ -20,8 +20,6 @@ namespace KodeUI
 		public override void CreateUI()
 		{
 			image = gameObject.AddComponent<Image>();
-			image.color = UnityEngine.Color.white;
-			image.type = Image.Type.Sliced;
 
 			scrollbar = gameObject.AddComponent<Scrollbar>();
 
@@ -43,6 +41,7 @@ namespace KodeUI
 
 			image.sprite = style.sprite;
 			image.color = style.color ?? UnityEngine.Color.white;
+			image.type = style.type ?? Image.Type.Sliced;
 		}
 
 		public UIScrollbar Direction(Scrollbar.Direction direction)

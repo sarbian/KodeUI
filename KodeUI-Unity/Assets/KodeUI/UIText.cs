@@ -11,12 +11,14 @@ namespace KodeUI
         {
             Pivot(PivotPresets.TopLeft);
             tmpText = gameObject.AddComponent<TextMeshProUGUI>();
-            tmpText.fontSize = 18;
         }
 
         public override void Style()
         {
             tmpText.color = style.color ?? UnityEngine.Color.white;
+            tmpText.fontSize = style.fontSize ?? 18;
+            tmpText.alignment = style.alignment ?? TextAlignmentOptions.TopLeft;
+            tmpText.margin = style.margin ?? Vector4.zero;
         }
 
         public UIText Text(string text)
@@ -48,12 +50,14 @@ namespace KodeUI
         public UIText Size(float s)
         {
             tmpText.fontSize = s;
+            style.fontSize = s;
             return this;
         }
 
         public UIText Alignment(TextAlignmentOptions align)
         {
             tmpText.alignment = align;
+            style.alignment = align;
             return this;
         }
 
@@ -66,13 +70,13 @@ namespace KodeUI
         public UIText Margin (Vector4 margin)
         {
             tmpText.margin = margin;
+            style.margin = margin;
             return this;
         }
 
         public UIText Margin (float left, float right, float top, float bottom)
         {
-            tmpText.margin = new Vector4 (left, right, top, bottom);
-            return this;
+            return Margin (new Vector4 (left, right, top, bottom));
         }
     }
 }

@@ -18,6 +18,7 @@ namespace KodeUI
         {
             image.sprite = style.sprite;
             image.color = style.color ?? UnityEngine.Color.white;
+            image.type = style.type ?? UnityEngine.UI.Image.Type.Sliced;
         }
 
         public UIImage Image(Sprite sprite)

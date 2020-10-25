@@ -83,8 +83,6 @@ namespace KodeUI
 			rectTransform.anchoredPosition = Vector2.zero;
 			
 			backGround = gameObject.AddComponent<Image>();
-			backGround.type = Image.Type.Sliced;
-			backGround.color = UnityEngine.Color.clear;;
 
 			scrollRect = gameObject.AddComponent<ScrollRect>();
 
@@ -100,6 +98,7 @@ namespace KodeUI
 			base.Style();
 			backGround.sprite = style.sprite;
 			backGround.color = style.color ?? UnityEngine.Color.clear;
+			backGround.type = style.type ?? Image.Type.Sliced;
 		}
 
 		public ScrollView Background(Sprite sprite, Image.Type type =  Image.Type.Simple)

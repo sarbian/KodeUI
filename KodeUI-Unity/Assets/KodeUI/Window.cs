@@ -26,6 +26,7 @@ namespace KodeUI
 
             BackGround.sprite = style.sprite;
             BackGround.color = style.color ?? UnityEngine.Color.white;
+            BackGround.type = style.type ?? UnityEngine.UI.Image.Type.Sliced;
 
             Padding(4, 4, 0, 4);
         }

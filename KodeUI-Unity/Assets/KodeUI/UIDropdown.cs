@@ -125,8 +125,6 @@ namespace KodeUI
         public override void CreateUI()
 		{
 			background = gameObject.AddComponent<Image>();
-			background.color = UnityEngine.Color.white;
-			background.type = Image.Type.Sliced;
 
 			dropdown = gameObject.AddComponent<KodeUI_Dropdown>();
 
@@ -159,6 +157,7 @@ namespace KodeUI
 			}
 			background.sprite = style.sprite;
 			background.color = style.color ?? UnityEngine.Color.white;
+			background.type = style.type ?? Image.Type.Sliced;
 		}
 
 		public UIDropdown Options(List<OptionData> options)

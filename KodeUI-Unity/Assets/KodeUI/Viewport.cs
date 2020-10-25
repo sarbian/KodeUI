@@ -21,7 +21,6 @@ namespace KodeUI
 		public override void CreateUI()
 		{
 			image = gameObject.AddComponent<Image>();
-			image.color = UnityEngine.Color.white;
 
 			mask = gameObject.AddComponent<Mask>();
 			mask.showMaskGraphic = false;
@@ -30,6 +29,8 @@ namespace KodeUI
 		public override void Style()
 		{
 			image.sprite = style.sprite;
+			image.color = style.color ?? UnityEngine.Color.white;
+			image.type = style.type ?? UnityEngine.UI.Image.Type.Sliced;
 		}
 	}
 }

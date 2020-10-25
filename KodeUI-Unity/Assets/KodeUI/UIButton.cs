@@ -32,6 +32,7 @@ namespace KodeUI
                 .DoMinHeight(true)
                 .Add<Layout> (out content)
                     .Horizontal()
+                    .Padding(3)
                     .ChildForceExpand(false, false)
                     .ControlChildSize(true, true)
                     .Anchor(AnchorPresets.StretchAll)
@@ -39,8 +40,6 @@ namespace KodeUI
                     .Finish();
 
             image = gameObject.AddComponent<Image>();
-            image.type = UnityEngine.UI.Image.Type.Sliced;
-            image.color = UnityEngine.Color.white;
 
             button = gameObject.AddComponent<Button>();
             button.targetGraphic = image;
@@ -48,7 +47,6 @@ namespace KodeUI
 
         public override void Style()
         {
-            content.Padding(3);
 
             button.transition = style.transition ?? Selectable.Transition.ColorTint;
             if (style.stateSprites.HasValue) {
@@ -58,6 +56,7 @@ namespace KodeUI
 
             image.sprite = style.sprite;
             image.color = style.color ?? UnityEngine.Color.white;
+            image.type = style.type ?? UnityEngine.UI.Image.Type.Sliced;
         }
         
         public UIButton Text(string text)

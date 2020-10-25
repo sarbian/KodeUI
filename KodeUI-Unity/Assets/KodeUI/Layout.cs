@@ -23,6 +23,12 @@ namespace KodeUI
 
         public override void Style()
         {
+            if (style.padding is RectOffset ro) {
+                layoutGroup.padding = ro;
+            }
+            if (layoutGroup is HorizontalOrVerticalLayoutGroup lg && style.spacing is float s) {
+                lg.spacing = s;
+            }
         }
 
         public Layout VertiLink()

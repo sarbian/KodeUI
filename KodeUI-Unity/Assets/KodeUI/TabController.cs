@@ -71,7 +71,6 @@ namespace KodeUI
             public override void CreateUI()
             {
                 image = gameObject.AddComponent<Image> ();
-                image.type = Image.Type.Sliced;
 
 				toggle = gameObject.AddComponent<Toggle> ();
 				toggle.onValueChanged.AddListener (onValueChanged);
@@ -95,6 +94,7 @@ namespace KodeUI
             {
                 image.sprite = style.sprite;
                 image.color = style.color ?? UnityEngine.Color.white;
+                image.type = style.type ?? Image.Type.Sliced;
             }
 
 			void onValueChanged (bool on)

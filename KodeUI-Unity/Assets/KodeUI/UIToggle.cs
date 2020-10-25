@@ -31,7 +31,6 @@ namespace KodeUI
             toggle = gameObject.AddComponent<Toggle>();
 
             image = gameObject.AddComponent<Image>();
-            image.type = UnityEngine.UI.Image.Type.Sliced;
             toggle.targetGraphic = image;
 
             Add<UIImage>(out checkMark, "CheckMark").Anchor(AnchorPresets.StretchAll).Pivot(PivotPresets.MiddleCenter).SizeDelta(0, 0).Finish();
@@ -48,6 +47,7 @@ namespace KodeUI
         {
             image.sprite = style.sprite;
             image.color = style.color ?? UnityEngine.Color.white;
+            image.type = style.type ?? UnityEngine.UI.Image.Type.Sliced;
 
             toggle.colors = style.stateColors ?? ColorBlock.defaultColorBlock;
             toggle.transition = style.transition ?? Selectable.Transition.ColorTint;
@@ -63,10 +63,10 @@ namespace KodeUI
             return this;
         }
 
-		public UIToggle Group(ToggleGroup group)
-		{
-			toggle.group = group;
-			return this;
-		}
+        public UIToggle Group(ToggleGroup group)
+        {
+            toggle.group = group;
+            return this;
+        }
     }
 }
