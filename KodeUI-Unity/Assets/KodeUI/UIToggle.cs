@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 namespace KodeUI
 {
@@ -68,5 +69,10 @@ namespace KodeUI
             toggle.group = group;
             return this;
         }
+
+		public void OnPointerClick(PointerEventData eventData)
+		{
+			toggle.OnPointerClick (eventData);
+		}
     }
 }
