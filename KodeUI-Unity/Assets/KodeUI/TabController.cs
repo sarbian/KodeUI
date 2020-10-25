@@ -10,7 +10,7 @@ using TMPro;
 namespace KodeUI
 {
 
-    public class TabController : Layout
+    public class TabController : LayoutPanel
     {
         public interface ITabItem
         {
@@ -66,7 +66,8 @@ namespace KodeUI
 			Image image;
 
 			ITabItem item;
-            UIText text;
+			UIText text;
+			UIImage selected;
 
             public override void CreateUI()
             {
@@ -75,7 +76,11 @@ namespace KodeUI
 				toggle = gameObject.AddComponent<Toggle> ();
 				toggle.onValueChanged.AddListener (onValueChanged);
 
-				this
+				this.Add<UIImage>(out selected, "Selected")
+						.Anchor(AnchorPresets.StretchAll)
+						.Pivot(PivotPresets.MiddleCenter)
+						.SizeDelta(0, 0)
+						.Finish()
 					.Add<UIText>(out text, "Label")
 						.Alignment(TextAlignmentOptions.Center)
 						.Anchor(AnchorPresets.StretchAll)
@@ -100,6 +105,8 @@ namespace KodeUI
 			void onValueChanged (bool on)
 			{
 				item.SetTabVisible (on);
+				image.enabled = !on;
+				selected.SetActive (on);
 			}
 
             public TabItemView Item(ITabItem item)
