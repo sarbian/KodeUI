@@ -7,9 +7,9 @@ namespace KodeUI
 {
     public class Titlebar : Layout, ILayoutElement, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler
     {
-        private bool isDragging = false;
-        private RectTransform canvasRectTransform;
-        private RectTransform windowRect;
+        RectTransform canvasRectTransform;
+        RectTransform windowRect;
+        Vector2 dragAnchor;
         Vector2 preferredSize;
         UIText titleText;
 
@@ -45,49 +45,39 @@ namespace KodeUI
                 titleText.Text (title);
             } else {
                 Add<UIText>(out titleText, "TitleText").Text(title).Alignment(TextAlignmentOptions.Top).Anchor(AnchorPresets.StretchAll).SizeDelta(0, 0).FlexibleLayout(true, false).Pivot(PivotPresets.TopCenter).BlocksRaycasts(false).Finish();
-				titleText.tmpText.raycastTarget = false;
+                titleText.tmpText.raycastTarget = false;
             }
             return this;
         }
 
+        void DoDrag(PointerEventData eventData)
+        {
+            Vector2 currentPos;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, eventData.position, eventData.pressEventCamera, out currentPos);
+            Vector3 localDelta = currentPos - dragAnchor;
+            windowRect.localPosition += localDelta;
+        }
+
         public virtual void OnDrag(PointerEventData eventData)
         {
-            if (!isDragging) {
-                return;
-            }
-
-            // TODO test  getting the event position  in the  window and in the canvas  and use that to move instead  of delta ?
-
-            // For our use case rectTransform.localPosition += eventData.delta works fine but this should solve the general case
-            Vector2 currentPos;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, eventData.position, eventData.pressEventCamera, out currentPos);
-            Vector2 previousPos;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, eventData.position - eventData.delta, eventData.pressEventCamera, out previousPos);
-
-            Vector3 localDelta = currentPos - previousPos;
-            windowRect.localPosition += localDelta;
+            dodrag(eventData);
         }
 
         public virtual void OnBeginDrag(PointerEventData eventData)
         {
-            if (eventData.pointerCurrentRaycast.gameObject == null)
-                return;
-
-            if (eventData.pointerCurrentRaycast.gameObject == gameObject)
-            {
-                isDragging = true;
-            }
+            dodrag(eventData);
         }
 
         public virtual void OnEndDrag(PointerEventData eventData)
         {
-            isDragging = false;
+            dodrag(eventData);
         }
 
         public virtual void OnPointerDown(PointerEventData eventData)
         {
             if (windowRect) {
                 if (eventData.button == PointerEventData.InputButton.Left) {
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, eventData.position, eventData.pressEventCamera, out dragAnchor);
                     windowRect.SetAsLastSibling();
                 } else if (eventData.button == PointerEventData.InputButton.Middle) {
                     windowRect.SetAsFirstSibling();
