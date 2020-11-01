@@ -47,7 +47,7 @@ namespace KodeUI
 			public void Select (int index)
 			{
 				if (index >= 0 && index < Count) {
-					group.SetAllTogglesOff (false);
+					group.SetAllTogglesOff (true);
 					var child = Content.rectTransform.GetChild (index);
 					var view = child.GetComponent<TabItemView> ();
 					view.Select ();
@@ -198,6 +198,14 @@ namespace KodeUI
 				var item = transform.GetChild (i).GetComponent<TabItemView> ();
 				item.UpdateTabState ();
 			}
+			return this;
+		}
+
+		public int TabCount { get { return items.Count; } }
+
+		public TabController SelectTab (int index)
+		{
+			items.Select (index);
 			return this;
 		}
     }
