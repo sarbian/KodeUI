@@ -60,17 +60,17 @@ namespace KodeUI
 
         public virtual void OnDrag(PointerEventData eventData)
         {
-            dodrag(eventData);
+            DoDrag(eventData);
         }
 
         public virtual void OnBeginDrag(PointerEventData eventData)
         {
-            dodrag(eventData);
+            DoDrag(eventData);
         }
 
         public virtual void OnEndDrag(PointerEventData eventData)
         {
-            dodrag(eventData);
+            DoDrag(eventData);
         }
 
         public virtual void OnPointerDown(PointerEventData eventData)
