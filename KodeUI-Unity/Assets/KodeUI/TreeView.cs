@@ -58,6 +58,7 @@ namespace KodeUI
             TreeViewToggleEvent onStateChanged = new TreeViewToggleEvent();
             TreeViewClickedEvent onClick = new TreeViewClickedEvent();
             ColorBlock colors;
+            bool styleSet;
 
             public UIText Text { get { return text; } }
             public int Index { get { return index; } }
@@ -88,11 +89,14 @@ namespace KodeUI
 
             public override void Style()
             {
+                styleSet = true;
+
                 background.sprite = style.sprite;
                 background.color = style.color ?? UnityEngine.Color.white;
                 background.type = style.type ?? Image.Type.Sliced;
 
                 colors = colors = style.stateColors ?? ColorBlock.defaultColorBlock;
+                SetSelectionState (true);
             }
 
             void onValueChanged (bool open)
@@ -123,10 +127,12 @@ namespace KodeUI
                 toggle.Image.enabled = item.CanOpen;
                 toggle.SetIsOnWithoutNotify(item.IsOpen);
 
-				pointerInside = false;
-				pressed = false;
-				selected = false;
-				SetSelectionState (true);
+                pointerInside = false;
+                pressed = false;
+                selected = false;
+                if (styleSet) {
+                    SetSelectionState (true);
+                }
                 return this;
             }
 
@@ -257,7 +263,7 @@ namespace KodeUI
             int itemIndex = 0;
             int itemCount = items.Count;
 
-			selectedItem = null;
+            selectedItem = null;
 
             while (childIndex < childCount && itemIndex < itemCount) {
                 var child = contentRect.GetChild(childIndex);
