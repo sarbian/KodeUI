@@ -48,7 +48,7 @@ namespace KodeUI
             }
         }
 
-        public class TreeItemView : UIObject, IPointerClickHandler
+        public class TreeItemView : UIObject, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
         {
             Image background;
             UIToggle toggle;
@@ -57,6 +57,7 @@ namespace KodeUI
             int index;
             TreeViewToggleEvent onStateChanged = new TreeViewToggleEvent();
             TreeViewClickedEvent onClick = new TreeViewClickedEvent();
+            ColorBlock colors;
 
             public UIText Text { get { return text; } }
             public int Index { get { return index; } }
@@ -90,6 +91,8 @@ namespace KodeUI
                 background.sprite = style.sprite;
                 background.color = style.color ?? UnityEngine.Color.white;
                 background.type = style.type ?? Image.Type.Sliced;
+
+                colors = colors = style.stateColors ?? ColorBlock.defaultColorBlock;
             }
 
             void onValueChanged (bool open)
@@ -110,15 +113,20 @@ namespace KodeUI
                 text.Text (item.Text);
                 Vector2 size = text.tmpText.GetPreferredValues ();
 
-				float x = level * size.y;
+                float x = level * size.y;
                 float text_x = x + size.y;
 
                 text.SizeDelta(-text_x, 0).X(text_x);
 
-				toggle.X(x);
+                toggle.X(x);
                 toggle.CheckMark.image.enabled = item.IsOpen;
                 toggle.Image.enabled = item.CanOpen;
                 toggle.SetIsOnWithoutNotify(item.IsOpen);
+
+				pointerInside = false;
+				pressed = false;
+				selected = false;
+				SetSelectionState (true);
                 return this;
             }
 
@@ -140,11 +148,81 @@ namespace KodeUI
                     onClick.Invoke(index);
                 }
             }
+
+            bool pointerInside;
+            bool pressed;
+            bool selected;
+
+            void SetSelectionState (bool instant)
+            {
+                Color tintColor;
+
+                if (pointerInside) {
+                    if (pressed) {
+                        tintColor = colors.pressedColor;
+                    } else {
+                        tintColor = colors.highlightedColor;
+                    }
+                } else {
+                    if (selected) {
+                        tintColor = colors.selectedColor;
+                    } else {
+                        tintColor = colors.normalColor;
+                    }
+                }
+                background.CrossFadeColor (tintColor * colors.colorMultiplier, colors.fadeDuration, true, true);
+            }
+
+            public void OnPointerDown (PointerEventData eventData)
+            {
+                if (eventData.button == PointerEventData.InputButton.Left) {
+                    pressed = true;
+                    SetSelectionState (false);
+                }
+            }
+
+            public void OnPointerUp (PointerEventData eventData)
+            {
+                if (eventData.button == PointerEventData.InputButton.Left) {
+                    pressed = false;
+                    SetSelectionState (false);
+                }
+            }
+
+            public void OnPointerEnter (PointerEventData eventData)
+            {
+                if (eventData.button == PointerEventData.InputButton.Left) {
+                    pointerInside = true;
+                    SetSelectionState (false);
+                }
+            }
+
+            public void OnPointerExit (PointerEventData eventData)
+            {
+                if (eventData.button == PointerEventData.InputButton.Left) {
+                    pointerInside = false;
+                    SetSelectionState (false);
+                }
+            }
+
+            public void OnSelect ()
+            {
+                selected = true;
+                SetSelectionState (false);
+            }
+
+            public void OnDeselect ()
+            {
+                selected = false;
+                SetSelectionState (false);
+            }
         }
 
         List<TreeItem> items;
         TreeViewToggleEvent onStateChanged = new TreeViewToggleEvent();
         TreeViewClickedEvent onClick = new TreeViewClickedEvent();
+
+        TreeItemView selectedItem;
 
         public override void CreateUI()
         {
@@ -178,6 +256,8 @@ namespace KodeUI
             int childIndex = 0;
             int itemIndex = 0;
             int itemCount = items.Count;
+
+			selectedItem = null;
 
             while (childIndex < childCount && itemIndex < itemCount) {
                 var child = contentRect.GetChild(childIndex);
@@ -218,6 +298,22 @@ namespace KodeUI
         {
             this.items = items;
             RebuildContent();
+            return this;
+        }
+
+        public TreeView SelectItem (int index)
+        {
+            var contentRect = Content.rectTransform;
+            int childCount = contentRect.childCount;
+
+            if (selectedItem != null) {
+                selectedItem.OnDeselect ();
+            }
+            if (index >= 0 && index < childCount) {
+                var child = contentRect.GetChild(index);
+                selectedItem = child.GetComponent<TreeItemView>();
+                selectedItem.OnSelect ();
+            }
             return this;
         }
     }
