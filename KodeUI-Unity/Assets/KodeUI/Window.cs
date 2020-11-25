@@ -7,7 +7,12 @@ namespace KodeUI
     public class Window : LayoutPanel
     {
         private RectTransform canvasRectTransform;
-		Titlebar titlebar;
+		Titlebar _titlebar;
+		public Titlebar titlebar
+		{
+			get { return _titlebar; }
+			private set { _titlebar = value; }
+		}
         
         public override void CreateUI()
         {
@@ -17,7 +22,7 @@ namespace KodeUI
             Canvas canvas = GetComponentInParent<Canvas>();
             canvasRectTransform = canvas.GetComponent<RectTransform>();
 
-			Add<Titlebar>(out titlebar).Window(this).Finish();
+			Add<Titlebar>(out _titlebar).Window(this).Finish();
         }
 
         public override void Style()
