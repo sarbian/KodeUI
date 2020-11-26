@@ -6,6 +6,7 @@
 
 KodeUI = \
 	KodeUI/AnchorLayoutGroup.cs \
+	KodeUI/Draggable.cs \
 	KodeUI/ImageLoader.cs \
 	KodeUI/Layout.cs \
 	KodeUI/LayoutAnchor.cs \
