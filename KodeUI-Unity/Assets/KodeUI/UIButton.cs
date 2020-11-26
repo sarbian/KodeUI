@@ -72,7 +72,13 @@ namespace KodeUI
         public UIButton Image(Sprite sprite)
         {
             if (childImage == null) {
-                content.Add<UIImage>(out childImage, "ButtomImage").Image(sprite).Anchor(AnchorPresets.StretchAll).Width(0).Height(0).Finish();
+                content
+					.Add<UIImage>(out childImage, "ButtonImage")
+					.Image(sprite)
+					.Anchor(AnchorPresets.StretchAll)
+					.SizeDelta(0, 0)
+					.FlexibleLayout(true, true)
+					.Finish();
             } else {
                 childImage.Image(sprite);
             }
