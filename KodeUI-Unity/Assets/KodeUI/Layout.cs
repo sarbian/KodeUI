@@ -5,7 +5,7 @@ namespace KodeUI
 {
     public class Layout : UIObject
     {
-        private LayoutGroup layoutGroup;
+        public LayoutGroup layoutGroup { get; private set; }
     
         protected override string GetStylePath(bool isParent=false)
         {
