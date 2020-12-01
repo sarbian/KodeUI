@@ -274,6 +274,7 @@ namespace KodeUI
         {
             rectTransform.anchorMin = min;
             rectTransform.anchorMax = max;
+            rectTransform.sizeDelta = Vector2.zero;
             return this;
         }
 
