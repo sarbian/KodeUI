@@ -10,7 +10,7 @@ namespace KodeUI
         private Layout content;
         private UIText childText;
         private UIImage childImage;
-        private Button button;
+        protected Button button;
         private Image image;
 
         public Layout Content { get { return content; } }

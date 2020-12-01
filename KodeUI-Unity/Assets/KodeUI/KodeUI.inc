@@ -31,6 +31,7 @@ KodeUI = \
 	KodeUI/UILayoutElement.cs \
 	KodeUI/UIObject.cs \
 	KodeUI/UIRectMask.cs \
+	KodeUI/UIRepeatButton.cs \
 	KodeUI/UIScrollbar.cs \
 	KodeUI/UISlider.cs \
 	KodeUI/UIText.cs \
