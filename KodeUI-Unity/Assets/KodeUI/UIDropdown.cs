@@ -100,8 +100,9 @@ namespace KodeUI
 			float am = LayoutUtility.GetMinSize(arrow.rectTransform, 0);
 			float cp = LayoutUtility.GetPreferredSize(caption.rectTransform, 0);
 			float ap = LayoutUtility.GetPreferredSize(arrow.rectTransform, 0);
+			Vector2 size = caption.tmpText.GetPreferredValues ();
 			minSize.x = cm + am;
-			preferredSize.x = Mathf.Max(cp, ap);
+			preferredSize.x = Mathf.Max(cp, size.x) + ap;
 		}
 
 		public void CalculateLayoutInputVertical()
@@ -110,8 +111,9 @@ namespace KodeUI
 			float am = LayoutUtility.GetMinSize(arrow.rectTransform, 1);
 			float cp = LayoutUtility.GetPreferredSize(caption.rectTransform, 1);
 			float ap = LayoutUtility.GetPreferredSize(arrow.rectTransform, 1);
-			minSize.y = cm + am;
-			preferredSize.y = Mathf.Max(cp, ap);
+			Vector2 size = caption.tmpText.GetPreferredValues ();
+			minSize.y = Mathf.Max(cm, am);
+			preferredSize.y = Mathf.Max(Mathf.Max(cp, size.y), ap);
 		}
 
 		public int layoutPriority { get { return 0; } }
@@ -128,7 +130,7 @@ namespace KodeUI
 
 			dropdown = gameObject.AddComponent<KodeUI_Dropdown>();
 
-			Add<UIText> (out caption, "Label").Alignment (TextAlignmentOptions.Left).Margin (5, 5, 6, 6).Anchor(AnchorPresets.StretchAll).SizeDelta (0, 0).Finish();
+			Add<UIText> (out caption, "Label").Text("D").Alignment (TextAlignmentOptions.Left).Margin (5, 5, 6, 6).Anchor(AnchorPresets.StretchAll).SizeDelta (0, 0).Finish();
 			Add<UIImage> (out arrow, "Arrow").Anchor(AnchorPresets.VertStretchRight).X(-15).Y(0).PreferredHeight(0).Pivot(PivotPresets.MiddleCenter).SizeDelta(20,0).Finish();
 
 			UIScrollbar scrollbar;
