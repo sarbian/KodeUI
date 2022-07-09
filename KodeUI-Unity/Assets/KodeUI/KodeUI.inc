@@ -11,6 +11,7 @@ KodeUI = \
 	KodeUI/Layout.cs \
 	KodeUI/LayoutAnchor.cs \
 	KodeUI/LayoutDebug.cs \
+	KodeUI/LayoutExtra.cs \
 	KodeUI/LayoutPanel.cs \
 	KodeUI/Loader.cs \
 	KodeUI/RectTransformExtensions.cs \
