@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using KodeUI;
 
-namespace ModularStorageContainer {
+namespace KodeUI {
 
 	public class HorizontalLayout : Layout
 	{
