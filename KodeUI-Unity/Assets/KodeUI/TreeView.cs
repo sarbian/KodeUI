@@ -78,7 +78,7 @@ namespace KodeUI
                     .Finish();
                 Anchor(AnchorPresets.HorStretchMiddle);
                 Pivot(PivotPresets.MiddleCenter);
-                Vector2 size = text.tmpText.GetPreferredValues ();
+                Vector2 size = text.tmpText.GetPreferredValues ("Ny");
                 SizeDelta(0, size.y);
 
                 toggle
@@ -115,7 +115,7 @@ namespace KodeUI
                 this.index = index;
                 int level = item.Level;
                 text.Text (item.Text);
-                Vector2 size = text.tmpText.GetPreferredValues ();
+                Vector2 size = text.tmpText.GetPreferredValues ("Ny");
 
                 float x = level * size.y;
                 float text_x = x + size.y;
