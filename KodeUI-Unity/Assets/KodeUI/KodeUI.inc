@@ -12,12 +12,17 @@ KodeUI = \
 	KodeUI/LayoutAnchor.cs \
 	KodeUI/LayoutDebug.cs \
 	KodeUI/LayoutExtra.cs \
+	KodeUI/LayoutGroups.cs \
 	KodeUI/LayoutPanel.cs \
+	KodeUI/LineSeriesGraphic.cs \
 	KodeUI/Loader.cs \
+	KodeUI/OwnedTextures.cs \
+	KodeUI/PickArea.cs \
 	KodeUI/RectTransformExtensions.cs \
 	KodeUI/ScrollView.cs \
 	KodeUI/Skin.cs \
 	KodeUI/SpriteLoader.cs \
+	KodeUI/Sprites.cs \
 	KodeUI/Style.cs \
 	KodeUI/TabController.cs \
 	KodeUI/Titlebar.cs \
@@ -42,5 +47,5 @@ KodeUI = \
 	KodeUI/Utils.cs \
 	KodeUI/VertiLinkLayoutGroup.cs \
 	KodeUI/Viewport.cs \
-	KodeUI/Window.cs \
+	KodeUI/Window.cs
 	$e
